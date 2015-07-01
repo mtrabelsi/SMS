@@ -3,7 +3,7 @@ global.$ = $;
 var abar = require('address_bar');
 var folder_view = require('folder_view');
 var nwGui = require('nw.gui');
-
+//first dp
 // append default actions to menu for OSX
 var initMenu = function () {
   try {
