@@ -1,0 +1,35 @@
+body { padding-top:0px; }
+
+.rcorners1 {
+   	-webkit-border-radius: 25px;
+   	-moz-border-radius: 25px;
+    border: 2px solid #DEDEDE;
+     /*#fff*/
+    padding: 20px; 
+    -webkit-box-shadow: 2px 2px 4px #888;
+	-moz-box-shadow: 2px 2px 4px #888;
+	box-shadow: 2px 2px 4px #888;
+}
+
+.rcorners2 {
+   border-radius: 15px;
+    border: none;
+    padding: 10px; 
+}
+
+/* chat boxes */
+#chatBox {
+    border-radius: 15px;
+    overflow : auto;
+    height : 300px;
+    border: 1px solid gray;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 20px;
+}
+.chatMessage {
+    padding: 2px 40px;
+    background: #ffffff;
+    border-radius: 25px;
+    text-align: left;
+    margin-bottom: 8px;
+}

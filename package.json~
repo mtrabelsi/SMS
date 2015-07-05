@@ -1,0 +1,24 @@
+{
+  "name": "FileExplorer",
+  "description": "Simple file explorer.",
+  "version": "0.1.1",
+  "dependencies": {
+    "express" : "~4.5.1",
+    "ejs" : "latest",
+	  "body-parser" : "~1.4.2",
+	  "method-override" : "latest",
+    "connect-flash" : "latest",
+    "morgan": "latest",
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "method-override": "latest",
+    "express-session": "latest",
+    "nodemailer" : "latest"
+  },
+  "main": "index.html",
+  "window": {
+    "toolbar": false,
+    "width": 660,
+    "height": 500
+  }
+}
