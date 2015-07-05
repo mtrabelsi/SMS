@@ -40,9 +40,13 @@
 		<link rel="stylesheet" href="libs/ag-grid/dist/angular-grid.min.css" />
 
 		<script src="config/Constant.js"></script>
+		<!-- login -->
 		<script src="frontend/common/login/LoginController.js"></script>
 		<script src="frontend/common/login/LoginService.js"></script>
+		<!-- toolbar -->
+		<script src="frontend/common/toolbar/ToolbarService.js"></script>
 
+		<!-- student -->
 
 		<script src="frontend/components/student/StudentController.js"></script>
 		<script src="frontend/components/student/StudentService.js"></script>
@@ -59,7 +63,7 @@
 
 	<div class="container-fluid">
 					<div class="col-md-2">
-						
+
 										<div class="list-group" ng-if="user.loggedin">
 
 													<li class="list-group-item list-group-item-success"><b>Opérations quotidiennes </b></li>
