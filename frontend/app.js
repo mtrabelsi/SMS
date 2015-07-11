@@ -4,10 +4,11 @@ var app =  angular.module('module.app',
 										'ui.router',
 										'Const',
 										'module.student',
-										'module.toolbar'
+										'module.toolbar',
+										'module.level'
 										]);
 
 										//initialize toolbar just by injectin it
 										//we've to change this later to manipulate it mannually(init, delete, refrash..)
-										app.run(function(Toolbar) {
-										});
+										// app.run(function(Toolbar) {
+										// });

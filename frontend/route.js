@@ -12,6 +12,16 @@ $urlRouterProvider.otherwise('/login');
                                       templateUrl: 'frontend/components/student/views/student.html',
 																			controller: 'StudentController'
                                 })
+                .state('level', {
+                                      url: '/level',
+                                      templateUrl: 'frontend/components/level/views/level.html',
+																			controller: 'LevelController'
+                                })
+                .state('payment', {
+                                      url: '/payment',
+                                      templateUrl: 'frontend/components/payment/views/payment.html',
+																			controller: 'PaymentController'
+                                })
 
 
 });

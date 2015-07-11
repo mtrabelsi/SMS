@@ -1,24 +1,36 @@
 var toolbarModule = angular.module('module.toolbar', []);
 
-toolbarModule.factory('Toolbar', function() {
+toolbarModule.factory('Toolbar', function($state) {
 
   var gui = require('nw.gui');
   var win = gui.Window.get();
-  var menu = new gui.Menu();
+  var file = new gui.Menu();
+  var admin = new gui.Menu();
 
-  menu.append(new gui.MenuItem({ label: 'Item A' }));
-  menu.append(new gui.MenuItem({ label: 'Item B' }));
-  menu.append(new gui.MenuItem({ type: 'separator' }));
-  menu.append(new gui.MenuItem({ label: 'Item C' }));
+  file.append(new gui.MenuItem({ label: 'Fermer', click:function(){
+    win.close();
+  }}));
+
+  admin.append(new gui.MenuItem({ label: 'Gerer les Niveaux/Prix',click: function() {
+        $state.go('level');
+  }}));
+
+  admin.append(new gui.MenuItem({ label: 'Gerer les Eleves',enabled: false }));
+  admin.append(new gui.MenuItem({ type: 'separator' }));
+  admin.append(new gui.MenuItem({ label: 'Gerer les Utilisateurs' }));
 
   var menubar = new gui.Menu({ type: 'menubar' });
 
-   menubar.append(new gui.MenuItem({ label: 'File', submenu: menu}));
+   menubar.append(new gui.MenuItem({ label: 'Fichier', submenu: file}));
+   menubar.append(new gui.MenuItem({ label: 'Administration', submenu: admin}));
+
    win.menu = menubar;
-   
+
+
 return {
-      gui: function(){
-        return gui;
+
+      Window: function() {
+        return win;
       }
   }
 

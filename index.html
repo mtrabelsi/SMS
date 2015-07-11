@@ -8,6 +8,7 @@
 
 	<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/login.css"/>
+	<link rel="stylesheet" href="assets/css/style.css"/>
 
 		<!-- JS -->
 		<script src="libs/jquery/dist/jquery.min.js"></script>
@@ -35,9 +36,19 @@
 		<script src="libs/angular-strap/dist/angular-strap.min.js"></script>
 		<script src="libs/angular-strap/dist/angular-strap.tpl.min.js"></script>
 
+
 		<!-- NG Grid -->
-		<script src="libs/ag-grid/dist/angular-grid.min.js"></script>
-		<link rel="stylesheet" href="libs/ag-grid/dist/angular-grid.min.css" />
+		<script src="libs/ng-table/dist/ng-table.min.js"></script>
+		<link rel="stylesheet" href="libs/ng-table/dist/ng-table.min.css" />
+
+		<!-- Xeditable -->
+		<link href="libs/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+		<script src="libs/angular-xeditable/dist/js/xeditable.js"></script>
+
+		<!-- ngStrap -->
+		<script src="libs/angular-strap/dist/angular-strap.min.js"></script>
+		<script src="libs/angular-strap/dist/angular-strap.tpl.min.js"></script>
+
 
 		<script src="config/Constant.js"></script>
 		<!-- login -->
@@ -46,15 +57,16 @@
 		<!-- toolbar -->
 		<script src="frontend/common/toolbar/ToolbarService.js"></script>
 
-		<!-- student -->
+		<!-- level -->
+		<script src="frontend/components/level/LevelController.js"></script>
+		<script src="frontend/components/level/LevelService.js"></script>
 
+		<!-- student -->
 		<script src="frontend/components/student/StudentController.js"></script>
 		<script src="frontend/components/student/StudentService.js"></script>
 
-
 				<!--angular app -->
-
-			<script src="frontend/app.js"></script>
+		<script src="frontend/app.js"></script>
 		<script src="frontend/route.js"></script>
 
 </head>
@@ -62,34 +74,24 @@
 <body>
 
 	<div class="container-fluid">
+
 					<div class="col-md-2">
 
 										<div class="list-group" ng-if="user.loggedin">
 
-													<li class="list-group-item list-group-item-success"><b>Opérations quotidiennes </b></li>
+													<li class="list-group-item list-group-item-success"><b> Menu </b></li>
 
-													<a class="list-group-item" href="#"> <li class="fa fa-users lg"> </li> Créer Eleve</a>
-													<a class="list-group-item" href="#"> <li class="fa fa-cart-plus lg"> </li> Paiment</a>
-													<a class="list-group-item" href="#"> <li class="fa fa-history lg"> </li> Historique</a>
-													<a class="list-group-item" href="#"> <li class="fa fa-exclamation-triangle lg"> </li> Impayés</a>
-
-										</div>
-
-										<div class="list-group" ng-if="user.loggedin">
-
-													<li class="list-group-item list-group-item-danger"><b>Opérations admin</b></li>
-
-													<a class="list-group-item" href="#"> <li class="fa fa-users lg"> </li>Utilisateurs</a>
-													<a class="list-group-item" href="#"> <li class="fa fa-cart-plus lg"> </li> Gérer Eleve</a>
-													<a class="list-group-item" href="#"> <li class="fa fa-history lg"> </li> Archiver la base de donnée</a>
-													<a class="list-group-item" href="#"> <li class="fa fa-exclamation-triangle lg"> </li> Gérer les niveaux</a>
+													<a class="list-group-item" href="#" ui-sref="student"> <li class="fa fa-users lg"> </li> Créer Eleve</a>
+													<a class="list-group-item" href="#" ui-sref="payment"> <li class="fa fa-cart-plus lg"> </li> Paiment</a>
+													<a class="list-group-item disabled" href="#"> <li class="fa fa-history lg"> </li> Historique</a>
+													<a class="list-group-item disabled" href="#"> <li class="fa fa-exclamation-triangle lg"> </li> Impayés</a>
 
 										</div>
 					</div>
+
 					<div class="col-md-10">
 						<div ui-view></div>
 					</div>
-
 	</div>
 
 </body>
