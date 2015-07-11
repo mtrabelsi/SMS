@@ -1,32 +1,26 @@
-<button class="btn btn-default" ng-click="addStudent()">Add row</button>
 
-<table ng-table class="table table-bordered table-hover">
-     <tr ng-repeat="student in students">
 
-         <td data-title="'Name'">
-           <span editable-text="student.name" e-name="name" e-form="rowform" onbeforesave="checkName($data, student.id)" e-required>
-              {{ student.name || 'empty' }}
-           </span>
+<button ng-click="insertNewLine()" type="button" class="btn btn-default" data-animation="am-fade-and-scale" data-template="frontend/components/level/views/level.create.html" data-placement="center" bs-modal="modal">
+    <i class="fa fa-plus"></i> Créer Niveau
+</button>
+
+<br/><br/>
+<table ng-table  class="table table-bordered table-hover">
+     <tr ng-repeat="level in levels">
+         <td data-title="'Niveau'">
+           {{level._id}}
+          </td>
+
+         <td data-title="'Prix'" width="200" class="text-center">
+             <button ng-click="loadPrices(level)" type="button" class="btn btn-default" data-animation="am-fade-and-scale" data-template="frontend/components/level/views/level.edit.html" data-placement="center" bs-modal="modal">
+                 <i class="fa fa-pencil-square-o"></i> Modifier
+             </button>
          </td>
+         <td data-title="'Supprimer'" width="200" class="text-center">
 
-         <td data-title="'Age'">{{student.age}}</td>
-
-       <td style="white-space: nowrap">
-        <!-- form -->
-        <form editable-form name="rowform" onbeforesave="saveStudent($data, student.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == student">
-          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-            save
-          </button>
-          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-            cancel
-          </button>
-        </form>
-
-        <div class="buttons" ng-show="!rowform.$visible">
-          <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-          <button class="btn btn-danger" ng-click="removeStudent($index)">del</button>
-        </div>
-      </td>
-
+             <button ng-click="confirmDeletion(level)" type="button" class="btn btn-danger" data-animation="am-fade-and-scale" data-template="frontend/components/level/views/level.confirm.html" data-placement="center" bs-modal="modal">
+                 <i class="fa fa-trash"></i> Supprimer
+             </button>
+         </td>
      </tr>
 </table>

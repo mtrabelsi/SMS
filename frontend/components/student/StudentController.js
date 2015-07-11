@@ -1,41 +1,55 @@
 
-var studentModule = angular.module('module.student', ['ngTable','xeditable']);
+var studentModule = angular.module('module.student', ['ngTable','xeditable','mgcrea.ngStrap','ngAnimate']);
 
-studentModule.controller('StudentController', function($scope,$rootScope,Toolbar,StudentService) {
+studentModule.controller('StudentController', function($scope,$rootScope,Toolbar) {
   Toolbar.Window().maximize();
+/*
+  $scope.students  = [];
 
-  StudentService.getAllStudents(function(stds) {
-    console.log(stds);
+  StudentService.getAllStudents(function(lvs) {
+    $scope.students = lvs;
+    $scope.$apply();
   });
+$scope.confirmDeletion = function(student) {
+  $scope.toDeleteStudent = student;
+}
 
-  $scope.students = [];
+$scope.upsert = function(student){
+  StudentService.upsertStudent(student,function(lv) {
+    console.log('student saved/updated' + lv);
+  });
+};
 
-  $scope.checkName = function(data, id) {
-     if (id === 2 && data !== 'awesome') {
-       return "Username 2 should be `awesome`";
-     }
-   };
+$scope.delete = function (student) {
+  StudentService.removeStudent(student,function(nbrRM) {
+    if(nbrRM==1){
+        StudentService.getAllStudents(function(lvs) {
+          $scope.students = lvs;
+          $scope.$apply();
+        });
+    }
+  });
+};
 
-  $scope.saveStudent = function(data, id) {
-    //$scope.user not updated yet
-    angular.extend(data, {id: id});
-    return $http.post('/saveUser', data);
-  };
+$scope.deleteLastLine = function () {
+ $scope.students.pop();
+};
 
-  // remove user
-  $scope.removeStudent = function(index) {
-    $scope.students.splice(index, 1);
-  };
-
-  // add user
-  $scope.addStudent = function() {
-    $scope.inserted = {
-      id: $scope.students.length+1,
-      name: '',
-      status: null,
-      group: null
+$scope.insertNewLine = function() {
+    $scope.addedStudent = {
+      _id: '',
+      price : {
+          t1: {s:0,c:0,g:0,p:0,a:0},
+          t2: {s:0,c:0,g:0,p:0,a:0},
+          t3: {s:0,c:0,g:0,p:0,a:0}
+        }
     };
-    $scope.students.push($scope.inserted);
-  };
 
+   $scope.students.push($scope.addedStudent);
+};
+
+$scope.loadPrices = function(student) {
+  $scope.clickedStudent = student;
+};
+*/
 });
