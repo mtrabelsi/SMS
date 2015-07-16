@@ -18,11 +18,26 @@ $urlRouterProvider.otherwise('/login');
                                       templateUrl: 'frontend/components/student/views/student.html',
                 											controller: 'StudentController'
                                 })
-                // .state('payment', {
-                //                       url: '/payment',
-                //                       templateUrl: 'frontend/components/payment/views/payment.html',
-								// 											controller: 'PaymentController'
-                //                 })
+                .state('payment', {
+                                      url: '/payment',
+                                      templateUrl: 'frontend/components/payment/views/payment.html',
+																			controller: 'PaymentController',
+                                      resolve: {
+                                           students: function (StudentService, $q) {
+                                               var defer = $q.defer();
+                                               //defer.promise.then(function () {
+                                               StudentService.getAllStudents(function (sts) {
+                                                   //alert(JSON.stringify(sts));
+                                                   //return sts;
+                                                   defer.resolve(sts);
+                                               });
+                                               //})
+                                               //defer.resolve();
+                                               return defer.promise
+                                           }
+                                       }
+
+                                })
 
 
 });

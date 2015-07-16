@@ -1,5 +1,5 @@
 
-var levelModule = angular.module('module.level', ['ngTable','xeditable','mgcrea.ngStrap','ngAnimate']);
+var levelModule = angular.module('module.level', []);
 
 levelModule.controller('LevelController', function($scope,$rootScope,LevelService) {
 
@@ -26,6 +26,9 @@ $scope.delete = function (level) {
           $scope.levels = lvs;
           $scope.$apply();
         });
+    }else {
+          $scope.levels.pop();
+          $scope.$apply();
     }
   });
 };

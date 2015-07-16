@@ -1,0 +1,10 @@
+<h3>Cliquez sur l'eleve pour procéder le paiment:</h3>
+
+<table ng-table="tableParams" class="table table-bordered table-hover" show-filter="true">
+  <tr ng-repeat="student in $data" ng-click="confirm(student)">
+    <td data-title="'Nom'" class="ng-table-group" filter="{ 'firstname': 'text' }">{{student.firstname}}</td>
+    <td data-title="'Prenom'" class="ng-table-group" filter="{ 'lastname': 'text' }">{{student.lastname}}</td>
+    <td data-title="'Niveau'" class="ng-table-group" filter="{ '_levelId': 'text' }">{{student._levelId}}</td>
+    <td data-title="'Classe'" class="ng-table-group" filter="{ 'class': 'text' }">{{student.class}}</td>
+  </tr>
+</table>

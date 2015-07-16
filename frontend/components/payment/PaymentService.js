@@ -1,4 +1,4 @@
-studentModule.factory('StudentService', function(DB_URL) {
+paymentModule.factory('PaymentService', function(DB_URL) {
 
 
 
@@ -52,8 +52,7 @@ studentModule.factory('StudentService', function(DB_URL) {
 									lastname: student.lastname,
 									_levelId: student._levelId,
 									class: student.class,
-									price: student.price,
-									products: student.products
+									price: student.price
 						},{upsert:true}, function(err,numReplaced,lv) {
 							if(err)
 									console.log(err);

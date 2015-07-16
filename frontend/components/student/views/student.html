@@ -1,24 +1,33 @@
 
 
-<button ng-click="insertNewLine()" type="button" class="btn btn-default" data-animation="am-fade-and-scale" data-template="frontend/components/level/views/level.create.html" data-placement="center" bs-modal="modal">
-    <i class="fa fa-plus"></i> Créer Niveau
+<button ng-click="insertNewLine()" type="button" class="btn btn-primary" data-animation="am-fade-and-scale" data-template="frontend/components/student/views/student.create.html" data-placement="center" bs-modal="modal">
+    <i class="fa fa-user-plus"></i> Créer Eleve
 </button>
 
 <br/><br/>
 <table ng-table  class="table table-bordered table-hover">
-     <tr ng-repeat="level in levels">
+     <tr ng-repeat="student in students">
+         <td data-title="'Nom'">
+           {{student.firstname}}
+          </td>
+         <td data-title="'Prenom'">
+           {{student.lastname}}
+          </td>
          <td data-title="'Niveau'">
-           {{level._id}}
+           {{student._levelId}}
+          </td>
+         <td data-title="'Classe'">
+           {{student.class}}
           </td>
 
          <td data-title="'Prix'" width="200" class="text-center">
-             <button ng-click="loadPrices(level)" type="button" class="btn btn-default" data-animation="am-fade-and-scale" data-template="frontend/components/level/views/level.edit.html" data-placement="center" bs-modal="modal">
-                 <i class="fa fa-pencil-square-o"></i> Modifier
+             <button ng-click="loadPrices(student)" type="button" class="btn btn-default" data-animation="am-fade-and-scale" data-template="frontend/components/student/views/student.edit.html" data-placement="center" bs-modal="modal">
+                 <i class="fa fa-pencil-square-o"></i> Voir prix
              </button>
          </td>
          <td data-title="'Supprimer'" width="200" class="text-center">
 
-             <button ng-click="confirmDeletion(level)" type="button" class="btn btn-danger" data-animation="am-fade-and-scale" data-template="frontend/components/level/views/level.confirm.html" data-placement="center" bs-modal="modal">
+             <button ng-click="confirmDeletion(student)" type="button" class="btn btn-danger" data-animation="am-fade-and-scale" data-template="frontend/components/student/views/student.confirm.html" data-placement="center" bs-modal="modal">
                  <i class="fa fa-trash"></i> Supprimer
              </button>
          </td>

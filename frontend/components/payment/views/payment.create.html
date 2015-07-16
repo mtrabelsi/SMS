@@ -11,7 +11,7 @@
   <div class="modal-body">
 
         <form role="form">
-          <table class="table table-bordered">
+          <table class="table table-bordered" ng-model="toPayStudent.products" bs-checkbox-group>
             <thead>
               <tr>
                 <th>
@@ -34,13 +34,16 @@
                   Scolarité
                 </th>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t1.s"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t1.s"></label>
+
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t2.s"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t2.s"></label>
+
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t3.s"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t3.s"></label>
+
                 </td>
               </tr>
               <tr>
@@ -48,13 +51,16 @@
                   Cantine
                 </th>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t1.c"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t1.c"></label>
+
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t2.c"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t2.c"></label>
+
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t3.c"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t3.c"></label>
+
                 </td>
               </tr>
               <tr>
@@ -62,13 +68,16 @@
                   Panier
                 </th>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t1.p"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t1.p"></label>
+
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t2.p"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t2.p"></label>
+
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t3.p"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t3.p"></label>
+
                 </td>
               </tr>
               <tr>
@@ -76,13 +85,16 @@
                   Garderie
                 </th>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t1.g"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t1.g"></label>
+
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t2.g"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t2.g"></label>
+
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t3.g"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t3.g"></label>
+
                 </td>
               </tr>
               <tr>
@@ -90,13 +102,13 @@
                   Activité
                 </th>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t1.a"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t1.a"></label>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t2.a"/>
+                    <label class="btn btn-default"><input type="checkbox" value="t2.a"></label>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t3.a"/>
+                  <label class="btn btn-default"><input type="checkbox" value="t3.a"></label>
                 </td>
               </tr>
             </tbody>

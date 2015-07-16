@@ -1,11 +1,16 @@
 var app =  angular.module('module.app',
 										[
-										'module.login',
+										'ngTable',
+										'mgcrea.ngStrap',
+										'ngAnimate',
 										'ui.router',
+
+										'module.login',
 										'Const',
 										'module.student',
 										'module.toolbar',
-										'module.level'
+										'module.level',
+										'module.payment'
 										]);
 
 										//initialize toolbar just by injectin it
