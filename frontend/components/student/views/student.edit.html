@@ -1,11 +1,11 @@
-<div class="modal" tabindex="-1" role="dialog" aria-hidden="true" ng-controller="StudentController">
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
 
   <div class="modal-dialog">
     <div class="modal-content">
 
       <div class="modal-header">
         <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modifier prix : <b>{{clickedStudent._id}}</b></h4>
+        <h4 class="modal-title">Modifier prix : <b>{{toEditStudent._id}}</b></h4>
       </div>
 
   <div class="modal-body">
@@ -34,13 +34,13 @@
                   Scolarité
                 </th>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t1.s"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t1.s"/>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t2.s"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t2.s"/>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t3.s"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t3.s"/>
                 </td>
               </tr>
               <tr>
@@ -48,13 +48,13 @@
                   Cantine
                 </th>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t1.c"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t1.c"/>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t2.c"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t2.c"/>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t3.c"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t3.c"/>
                 </td>
               </tr>
               <tr>
@@ -62,13 +62,13 @@
                   Panier
                 </th>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t1.p"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t1.p"/>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t2.p"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t2.p"/>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t3.p"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t3.p"/>
                 </td>
               </tr>
               <tr>
@@ -76,13 +76,13 @@
                   Garderie
                 </th>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t1.g"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t1.g"/>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t2.g"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t2.g"/>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t3.g"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t3.g"/>
                 </td>
               </tr>
               <tr>
@@ -90,13 +90,13 @@
                   Activité
                 </th>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t1.a"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t1.a"/>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t2.a"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t2.a"/>
                 </td>
                 <td>
-                  <input type="number" class="form-control" ng-model="clickedStudent.price.t3.a"/>
+                  <input type="number" class="form-control" ng-model="toEditStudent.price.t3.a"/>
                 </td>
               </tr>
             </tbody>
@@ -110,7 +110,7 @@
         <button type="button" class="btn btn-danger" ng-click="$hide()">
             <i class="fa fa-times"></i> Annuler
         </button>
-        <button type="button" class="btn btn-primary" ng-click="$parent.update(clickedStudent);$hide();">
+        <button type="button" class="btn btn-primary" ng-click="$parent.updateStudent(toEditStudent);$hide();">
             <i class="fa fa-plus"></i> Modifier
         </button>
       </div>

@@ -14,6 +14,8 @@
 		<script src="libs/jquery/dist/jquery.min.js"></script>
 		<script src="libs/angular/angular.min.js"></script>
 
+		<script src="libs/underscore/underscore-min.js"></script>
+
 		<!-- <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script> -->
 		<script src="libs/ui-router/release/angular-ui-router.min.js"></script>
 		<script src="libs/angular-cookies/angular-cookies.min.js"></script>
@@ -42,9 +44,9 @@
 		<link rel="stylesheet" href="libs/ng-table/dist/ng-table.min.css" />
 
 		<!-- Xeditable -->
-		<link href="libs/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+<!--		<link href="libs/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
 		<script src="libs/angular-xeditable/dist/js/xeditable.js"></script>
-
+-->
 		<!-- ngStrap -->
 		<script src="libs/angular-strap/dist/angular-strap.min.js"></script>
 		<script src="libs/angular-strap/dist/angular-strap.tpl.min.js"></script>
@@ -56,6 +58,10 @@
 		<script src="frontend/common/login/LoginService.js"></script>
 		<!-- toolbar -->
 		<script src="frontend/common/toolbar/ToolbarService.js"></script>
+
+		<!-- User -->
+		<script src="frontend/common/user/UserController.js"></script>
+		<script src="frontend/common/user/UserService.js"></script>
 
 		<!-- level -->
 		<script src="frontend/components/level/LevelController.js"></script>
@@ -85,7 +91,7 @@
 
 													<li class="list-group-item list-group-item-success"><b> Menu </b></li>
 
-													<a class="list-group-item" href="#" ui-sref="student"> <li class="fa fa-users lg"> </li> Créer Eleve</a>
+													<a class="list-group-item" href="#" ui-sref="student"> <li class="fa fa-users lg"> </li> Ajouter Eleve</a>
 													<a class="list-group-item" href="#" ui-sref="payment"> <li class="fa fa-cart-plus lg"> </li> Paiment</a>
 													<a class="list-group-item disabled" href="#"> <li class="fa fa-history lg"> </li> Historique</a>
 													<a class="list-group-item disabled" href="#"> <li class="fa fa-exclamation-triangle lg"> </li> Impayés</a>

@@ -1,57 +1,54 @@
 
 var levelModule = angular.module('module.level', []);
 
-levelModule.controller('LevelController', function($scope,$rootScope,LevelService) {
+levelModule.controller('LevelController', function(_, $q, NgTableParams,$scope,$rootScope,LevelService,levels) {
 
-  $scope.levels  = [];
 
-  LevelService.getAllLevels(function(lvs) {
-    $scope.levels = lvs;
-    $scope.$apply();
-  });
-$scope.confirmDeletion = function(level) {
-  $scope.toDeleteLevel = level;
-}
+    $scope.toDeleteLevel = {};
+    $scope.toEditLevel = {};
+    $scope.toInserLevel = {};
 
-$scope.upsert = function(level){
-  LevelService.upsertLevel(level,function(lv) {
-    console.log('level saved/updated' + lv);
-  });
-};
+    $scope.levels = levels;
 
-$scope.delete = function (level) {
-  LevelService.removeLevel(level,function(nbrRM) {
-    if(nbrRM==1){
-        LevelService.getAllLevels(function(lvs) {
-          $scope.levels = lvs;
-          $scope.$apply();
+    $scope.tableParams = new NgTableParams({}, {
+        dataset: $scope.levels
+    });
+
+    $scope.updateLevel = function(level) {
+        LevelService.upsertLevel(level).then(function(usr) {
+            //usr is undefined even it is succesfully updated..
+            $scope.toEditLevel = {};
         });
-    }else {
-          $scope.levels.pop();
-          $scope.$apply();
     }
-  });
-};
+    $scope.insertLevel = function(level) {
+        LevelService.upsertLevel(level).then(function(usr) {
+            $scope.levels.push(usr);
+            $scope.tableParams.reload();
+            $scope.toInserLevel = {};
+        },function(error){
+            alert('Impossible de créer ce Niveau, detail : '+error);
+        });
+    }
+   
+    $scope.deleteLevel = function(level) {
+        LevelService.removeLevel(level).then(function(numDeleted) {
+            indexToBeDeleted = _.indexOf(_.pluck($scope.levels, '_id'), level._id);
+            $scope.levels.splice(indexToBeDeleted,1);     
+            $scope.tableParams.reload();
+            $scope.toDeleteLevel = {};
+        },function(error){
+            alert('Impossible de supprimer ce Niveau, detail : '+error);
+        });
+    }
 
-$scope.deleteLastLine = function () {
- $scope.levels.pop();
-};
-
-$scope.insertNewLine = function() {
-    $scope.addedLevel = {
-      _id: '',
-      price : {
-          t1: {s:0,c:0,g:0,p:0,a:0},
-          t2: {s:0,c:0,g:0,p:0,a:0},
-          t3: {s:0,c:0,g:0,p:0,a:0}
-        }
-    };
-
-   $scope.levels.push($scope.addedLevel);
-};
-
-$scope.loadPrices = function(level) {
-  $scope.clickedLevel = level;
-};
+    $scope.loadEditedLevel = function(level) {
+        $scope.toEditLevel = level;
+    }
+    $scope.loadDeletedLevel = function(level) {
+        $scope.toDeleteLevel = level;
+    }
+    $scope.loadInsertedLevel = function(level) {
+        $scope.toInserLevel = level;
+    }
 
 });

@@ -1,4 +1,4 @@
-<div class="modal" tabindex="-1" role="dialog" aria-hidden="true" ng-controller="StudentController">
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
 
   <div class="modal-dialog">
     <div class="modal-content">
@@ -24,10 +24,10 @@
   </div>
 
       <div class="modal-footer">
-          <button type="button" class="btn btn-danger" ng-click="$parent.deleteLastLine();$hide();">
+          <button type="button" class="btn btn-danger" ng-click="$hide();">
               <i class="fa fa-times"></i> Annuler
           </button>
-          <button type="button" class="btn btn-primary" ng-click="upsert(addedStudent);$hide();">
+          <button type="button" class="btn btn-primary" ng-click="insertStudent(addedStudent);$hide();">
               <i class="fa fa-plus"></i> Créer
           </button>
       </div>

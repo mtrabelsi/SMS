@@ -17,7 +17,9 @@ toolbarModule.factory('Toolbar', function($state) {
 
   admin.append(new gui.MenuItem({ label: 'Gerer les Eleves',enabled: false }));
   admin.append(new gui.MenuItem({ type: 'separator' }));
-  admin.append(new gui.MenuItem({ label: 'Gerer les Utilisateurs' }));
+  admin.append(new gui.MenuItem({ label: 'Gerer les Utilisateurs' ,click: function() {
+        $state.go('user');
+  }}));
 
   var menubar = new gui.Menu({ type: 'menubar' });
 

@@ -34,24 +34,19 @@ $scope.confirm = function(student) {
 }
 
 /*
-student.products =  {
+a.products =  {
     t1: {s:false,c:false,g:false,p:false,a:false},
     t2: {s:false,c:false,g:false,p:false,a:false},
     t3: {s:false,c:false,g:false,p:false,a:false}
   };*/
 
-$scope.button = {
-  checkbox: {
-    t1: {s:true,c:false,g:false,p:false,a:false},
-    t2: {s:false,c:false,g:false,p:false,a:false},
-    t3: {s:false,c:false,g:false,p:false,a:true}
-  }
-};
-
 $scope.payment = function() {
   // alert('payment '+$scope.toPayStudent.firstname);
   modalPayment.$promise.then(modalPayment.show);
-
 }
+
+$scope.endPayment = function(student){
+  alert('payed : '+JSON.stringify(student));
+};
 
 });
