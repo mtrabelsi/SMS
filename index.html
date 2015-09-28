@@ -4,7 +4,8 @@
 
 	<meta charset="UTF-8">
 
-	<title>Authentication</title>
+    <title ng-bind="($title || 'Titre pas encore réglé!') + ' - Joconde'">si le ng-bind est vide alors ceci est affiché!</title>
+
 
 	<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/login.css"/>
@@ -51,6 +52,7 @@
 		<script src="libs/angular-strap/dist/angular-strap.min.js"></script>
 		<script src="libs/angular-strap/dist/angular-strap.tpl.min.js"></script>
 
+		<script src="libs/angular-ui-router-title/angular-ui-router-title.js"></script>
 
 		<script src="config/Constant.js"></script>
 		<!-- login -->

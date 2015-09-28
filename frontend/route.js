@@ -5,7 +5,12 @@ $urlRouterProvider.otherwise('/login');
                 .state('login', {
                                       url: '/login',
                                       templateUrl: 'frontend/common/login/views/login.html',
-																			controller: 'LoginController'
+																			controller: 'LoginController',
+                                      resolve: {
+                                        $title: function() { 
+                                          return 'Connexion'; 
+                                        }
+                                      }
                                 })
 
                 .state('level', {
@@ -21,7 +26,10 @@ $urlRouterProvider.otherwise('/login');
                                                });
                                               
                                                return defer.promise;
-                                           }
+                                           },
+                                           $title: function() { 
+                                                return 'Gerer Niveaux'; 
+                                              }
                                        }
                                 })
                 .state('student', {
@@ -37,7 +45,10 @@ $urlRouterProvider.otherwise('/login');
                                                });
                                               
                                                return defer.promise;
-                                           }
+                                           },
+                                            $title: function() { 
+                                                return 'Gerer Etudiants'; 
+                                              }
                                        }
                                 })
                 .state('user', {
@@ -53,7 +64,10 @@ $urlRouterProvider.otherwise('/login');
                                                    });
                                                   
                                                    return defer.promise;
-                                                 }
+                                                 },
+                                               $title: function() { 
+                                                return 'Gerer Utilisateurs'; 
+                                                }
                                               }
                                 })
                 .state('payment', {
@@ -64,12 +78,15 @@ $urlRouterProvider.otherwise('/login');
                                            students: function (StudentService, $q) {
                                                var defer = $q.defer();
                                               
-                                               StudentService.getAllStudents(function (sts) {
+                                               StudentService.getAllStudents().then(function (sts) {
                                                    defer.resolve(sts);
                                                });
                                               
                                                return defer.promise;
-                                           }
+                                           },
+                                           $title: function() { 
+                                                return 'Gerer les Paiments'; 
+                                              }
                                        }
 
                                 })

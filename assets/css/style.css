@@ -1,1 +1,18 @@
 body { padding-top:0px; }
+.space-40 { margin-right: 40px}
+
+
+.text-warning {
+    font-weight: bold;
+    color: orange;
+}
+.text-success {
+    font-weight: bold;
+}
+.text-danger {
+    font-weight: bold;
+
+}
+.bg-muted {
+	background-color: silver;
+}

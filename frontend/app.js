@@ -4,6 +4,7 @@ var app =  angular.module('module.app',
 										'mgcrea.ngStrap',
 										'ngAnimate',
 										'ui.router',
+										'ui.router.title',
 
 										'module.login',
 										'Const',
