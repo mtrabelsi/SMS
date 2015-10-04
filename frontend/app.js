@@ -12,7 +12,8 @@ var app =  angular.module('module.app',
 										'module.toolbar',
 										'module.level',
 										'module.payment',
-										'module.user'
+										'module.user',
+										'module.history'
 										]);
 
 app.factory('_', function() {

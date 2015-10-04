@@ -47,7 +47,7 @@ $urlRouterProvider.otherwise('/login');
                                                return defer.promise;
                                            },
                                             $title: function() { 
-                                                return 'Gerer Etudiants'; 
+                                                return 'Ajouter Etudiants'; 
                                               }
                                        }
                                 })
@@ -73,7 +73,7 @@ $urlRouterProvider.otherwise('/login');
                 .state('payment', {
                                       url: '/payment',
                                       templateUrl: 'frontend/components/payment/views/payment.html',
-																			controller: 'PaymentController',
+                                      controller: 'PaymentController',
                                       resolve: {
                                            students: function (StudentService, $q) {
                                                var defer = $q.defer();
@@ -86,6 +86,71 @@ $urlRouterProvider.otherwise('/login');
                                            },
                                            $title: function() { 
                                                 return 'Gerer les Paiments'; 
+                                              }
+                                       }
+
+                                })
+                  .state('history', {
+                                      url: '/history',
+                                      templateUrl: 'frontend/components/history/views/history.html',
+                                      controller: 'HistoryController',
+                                      resolve: {
+                                           payments: function (PaymentService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               PaymentService.getAllPayments().then(function (sts) {
+                                                   defer.resolve(sts);
+                                               },function(error){
+                                                   alert('failed to resolve history route :  '+error);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
+                                           $title: function() { 
+                                                return 'Gerer les Historiques'; 
+                                              }
+                                       }
+
+                                }) 
+
+                      .state('manageStudent', {
+                                      url: '/manageStudent',
+                                      templateUrl: 'frontend/components/student/views/student.manage.html',
+                                      controller: 'StudentController',
+                                      resolve: {
+                                           students: function (StudentService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               StudentService.getAllStudents().then(function (sts) {
+                                                   defer.resolve(sts);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
+                                            $title: function() { 
+                                                return 'Gerer Etudiants'; 
+                                              }
+                                       }
+
+                                })
+
+                      .state('printOne', {
+                                      url: '/printone/:id',
+                                      templateUrl: 'frontend/components/payment/views/payment.one.print.html',
+																			controller: 'HistoryPrinterController',
+                                      resolve: {
+                                           payments: function (PaymentService, $q, $stateParams) {
+                                               var defer = $q.defer();
+                                               PaymentService.getPaymentById($stateParams.id).then(function (sts) {
+                                                   defer.resolve(sts);
+                                               },function(error){
+                                                   alert('failed to resolve history route :  '+error);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
+                                           $title: function() { 
+                                                return 'Impression'; 
                                               }
                                        }
 

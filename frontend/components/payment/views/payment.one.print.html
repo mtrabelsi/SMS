@@ -1,26 +1,6 @@
-<div class="modal" tabindex="-1" role="dialog" aria-hidden="true" style="overflow: auto">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">
-              
-                    <span ng-class="{'bg-muted': entredAmount()=== 0,
-                             'bg-warning': entredAmount() < amount && entredAmount() != 0,
-                             'bg-success': entredAmount() === amount,
-                             'bg-danger': entredAmount() > amount}">    
-                             <b> Votre Caisse :</b></span>
 
-                    <span ng-class="{'text-muted': entredAmount()=== 0,
-                             'text-warning': entredAmount() < amount && entredAmount() != 0,
-                             'text-success': entredAmount() === amount,
-                             'text-danger': entredAmount() > amount}">    
-                             {{entredAmount()}} 
-                    </span>
 
-                  <span class="pull-right space-40">Total à payer : <b>{{amount}} DT</b></span></h4>
-            </div>
-
-            <div class="modal-body">
+         
                 <form name="paymentF">
                     Espece:
                     <input type="number" class="form-control" ng-model="payment.amount.brutAmount" />
@@ -73,32 +53,18 @@
                             </td>
                         </tr>
                     </table>
+
                 </form>
+
+
+            <div>       
+                    <span><b> Votre Caisse :</b></span>
+
+                    <span>    
+                             {{entredAmount()}} 
+                    </span>
+
+                  <span class="pull-right space-40">Total à payer : <b>{{amount}} DT</b></span>
             </div>
+        
 
-            <div class="modal-footer">
-                <div class="row">
-                     <div class="col-md-6">
-
-                        <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
-                                        <label class="control-label pull-left"><i class="fa fa-calendar-o"></i> Date Paiement: (Admin)</label>
-                                        <input ng-disabled="user.object.admin==false" type="text" class="form-control" ng-model="payment.datePayment" data-date-format="yyyy-MM-dd" data-date-type="date" data-min-date="today"data-autoclose="1" name="date2" bs-datepicker>
-                        </div>
-                     </div>
-
-                     <div class="col-md-6">
-                        <br/>
-                        <button type="button" class="btn btn-default" ng-click="$parent.paymentStep1();$hide();">
-                            <i class="fa fa-backward"></i> Etape précédente
-                        </button>
-                        <button ng-disabled="entredAmount()!=amount||amount==0" type="button" class="btn btn-primary" ng-click="$parent.finalPayment(toPayStudent);$hide();">
-                            <i class="fa fa fa-paypal"></i> Payer
-                        </button>
-
-                     </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>

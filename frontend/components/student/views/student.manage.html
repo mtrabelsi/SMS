@@ -19,5 +19,15 @@
          <td title="'Classe'" class="ng-table-group" filter="{ 'class': 'text' }" sortable="'class'">
            {{student.class}}
           </td>
+
+      
+         <td title="'Operation'">
+             <button ng-click="loadEditedStudent(student)" type="button" class="btn btn-default" data-animation="am-fade-and-scale" data-template="frontend/components/student/views/student.edit.html" data-placement="center" bs-modal="modal">
+                 <i class="fa fa-pencil-square-o"></i>
+             </button>
+             <button ng-click="loadDeletedStudent(student)" type="button" class="btn btn-danger" data-animation="am-fade-and-scale" data-template="frontend/components/student/views/student.confirm.html" data-placement="center" bs-modal="modal">
+                 <i class="fa fa-trash"></i> 
+             </button>
+         </td>
      </tr>
 </table>

@@ -11,7 +11,7 @@
   <div class="modal-body">
 
         <form role="form">
-          <table class="table table-bordered" ng-model="toPayStudent.products" bs-checkbox-group>
+          <table class="table table-bordered"  ng-model="toPayStudent.products" bs-checkbox-group>
             <thead>
               <tr>
                 <th>
@@ -34,15 +34,15 @@
                   Scolarité
                 </th>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t1.s"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t1','s')" type="checkbox" value="t1.s"></label>
 
                 </td>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t2.s"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t2','s')" type="checkbox" value="t2.s"></label>
 
                 </td>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t3.s"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t3','s')" type="checkbox" value="t3.s"></label>
 
                 </td>
               </tr>
@@ -51,15 +51,15 @@
                   Cantine
                 </th>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t1.c"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t1','c')" type="checkbox" value="t1.c"></label>
 
                 </td>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t2.c"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t2','c')" type="checkbox" value="t2.c"></label>
 
                 </td>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t3.c"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t3','c')" type="checkbox" value="t3.c"></label>
 
                 </td>
               </tr>
@@ -68,15 +68,15 @@
                   Panier
                 </th>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t1.p"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t1','p')" type="checkbox" value="t1.p"></label>
 
                 </td>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t2.p"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t2','p')" type="checkbox" value="t2.p"></label>
 
                 </td>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t3.p"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t3','p')" type="checkbox" value="t3.p"></label>
 
                 </td>
               </tr>
@@ -85,15 +85,15 @@
                   Garderie
                 </th>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t1.g"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t1','g')" type="checkbox" value="t1.g"></label>
 
                 </td>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t2.g"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t2','g')" type="checkbox" value="t2.g"></label>
 
                 </td>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t3.g"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t3','g')" type="checkbox" value="t3.g"></label>
 
                 </td>
               </tr>
@@ -102,13 +102,13 @@
                   Activité
                 </th>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t1.a"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t1','a')" type="checkbox" value="t1.a"></label>
                 </td>
                 <td>
-                    <label class="btn btn-default"><input type="checkbox" value="t2.a"></label>
+                    <label class="btn btn-default"><input ng-click="confirmProduct('t2','a')" type="checkbox" value="t2.a"></label>
                 </td>
                 <td>
-                  <label class="btn btn-default"><input type="checkbox" value="t3.a"></label>
+                  <label class="btn btn-default"><input ng-click="confirmProduct('t3','a')" type="checkbox" value="t3.a"></label>
                 </td>
               </tr>
             </tbody>

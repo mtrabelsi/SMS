@@ -11,13 +11,13 @@
   <div class="modal-body">
 
         <form role="form">
-          Nom:    <input type="text" class="form-control" ng-model="addedStudent.firstname"/>
-          Prenom: <input type="text" class="form-control" ng-model="addedStudent.lastname"/>
+          Nom:    <input type="text" class="form-control" ng-model="toInserStudent.firstname"/>
+          Prenom: <input type="text" class="form-control" ng-model="toInserStudent.lastname"/>
 
-          Niveau: <select ng-model="addedStudent._levelId" class="form-control" ng-options="level._id as level._id for level in levels">
+          Niveau: <select ng-model="toInserStudent._levelId" class="form-control" ng-options="level._id as level._id for level in levels">
           		    </select>
 
-          Classe: <select ng-model="addedStudent.class" class="form-control" ng-options="class as class for class in classes">
+          Classe: <select ng-model="toInserStudent.class" class="form-control" ng-options="class as class for class in classes">
           		    </select>
         </form>
 
@@ -27,7 +27,7 @@
           <button type="button" class="btn btn-danger" ng-click="$hide();">
               <i class="fa fa-times"></i> Annuler
           </button>
-          <button type="button" class="btn btn-primary" ng-click="insertStudent(addedStudent);$hide();">
+          <button type="button" class="btn btn-primary" ng-click="insertStudent(toInserStudent);$hide();">
               <i class="fa fa-plus"></i> Créer
           </button>
       </div>

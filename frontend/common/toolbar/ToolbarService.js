@@ -1,23 +1,32 @@
 var toolbarModule = angular.module('module.toolbar', []);
 
-toolbarModule.factory('Toolbar', function($state) {
+toolbarModule.factory('Toolbar', function($state, $rootScope) {
 
   var gui = require('nw.gui');
   var win = gui.Window.get();
   var file = new gui.Menu();
   var admin = new gui.Menu();
 
-  file.append(new gui.MenuItem({ label: 'Fermer', click:function(){
+  file.append(new gui.MenuItem({ label: 'Fermer',click:function(){
     win.close();
   }}));
 
-  admin.append(new gui.MenuItem({ label: 'Gerer les Niveaux/Prix',click: function() {
+//check if the user is an admin or not and then disable/enable some buttons
+var enabled = false;
+if($rootScope.user.object.admin==true){
+  enabled = true;
+}
+
+
+  admin.append(new gui.MenuItem({ label: 'Gerer les Niveaux/Prix', enabled: enabled, click: function() {
         $state.go('level');
   }}));
 
-  admin.append(new gui.MenuItem({ label: 'Gerer les Eleves',enabled: false }));
+  admin.append(new gui.MenuItem({ label: 'Gerer les Eleves', enabled: enabled, click: function() {
+        $state.go('manageStudent');
+  }}));
   admin.append(new gui.MenuItem({ type: 'separator' }));
-  admin.append(new gui.MenuItem({ label: 'Gerer les Utilisateurs' ,click: function() {
+  admin.append(new gui.MenuItem({ label: 'Gerer les Utilisateurs', enabled: enabled, click: function() {
         $state.go('user');
   }}));
 

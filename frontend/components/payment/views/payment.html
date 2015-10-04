@@ -1,6 +1,6 @@
 
 <table ng-table="tableParams" class="table table-bordered table-hover" show-filter="true">
-  <tr ng-repeat="student in $data" ng-click="confirm(student)">
+  <tr ng-repeat="student in $data" ng-click="confirmStart(student)">
     <td data-title="'Nom'" class="ng-table-group" filter="{ 'firstname': 'text' }">{{student.firstname}}</td>
     <td data-title="'Prenom'" class="ng-table-group" filter="{ 'lastname': 'text' }">{{student.lastname}}</td>
     <td data-title="'Niveau'" class="ng-table-group" filter="{ '_levelId': 'text' }">{{student._levelId}}</td>
