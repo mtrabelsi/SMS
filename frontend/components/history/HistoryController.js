@@ -9,10 +9,11 @@ historyModule.controller('HistoryController', function(_, $q, $scope, NgTablePar
     });
 
 });
-
+/*
 historyModule.controller('HistoryPrinterController', function( $scope, NgTableParams, PaymentService, payments) {
 
     $scope.payments = payments;
 
 
 });
+*/

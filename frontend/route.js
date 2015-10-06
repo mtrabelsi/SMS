@@ -12,8 +12,14 @@ $urlRouterProvider.otherwise('/login');
                                         }
                                       }
                                 })
+                $stateProvider
+                    .state('manage', {
+                        abstract: true,
+                        templateUrl: 'manage.html',
+                        url: '/manage'
+                     })
 
-                .state('level', {
+                .state('manage.level', {
                                       url: '/level',
                                       templateUrl: 'frontend/components/level/views/level.html',
 																			controller: 'LevelController',
@@ -32,7 +38,7 @@ $urlRouterProvider.otherwise('/login');
                                               }
                                        }
                                 })
-                .state('student', {
+                .state('manage.student', {
                                       url: '/student',
                                       templateUrl: 'frontend/components/student/views/student.html',
                                       controller: 'StudentController',
@@ -51,7 +57,7 @@ $urlRouterProvider.otherwise('/login');
                                               }
                                        }
                                 })
-                .state('user', {
+                .state('manage.user', {
                                       url: '/user',
                                       templateUrl: 'frontend/common/user/views/user.html',
                 											controller: 'UserController',
@@ -70,7 +76,7 @@ $urlRouterProvider.otherwise('/login');
                                                 }
                                               }
                                 })
-                .state('payment', {
+                .state('manage.payment', {
                                       url: '/payment',
                                       templateUrl: 'frontend/components/payment/views/payment.html',
                                       controller: 'PaymentController',
@@ -90,7 +96,7 @@ $urlRouterProvider.otherwise('/login');
                                        }
 
                                 })
-                  .state('history', {
+                  .state('manage.history', {
                                       url: '/history',
                                       templateUrl: 'frontend/components/history/views/history.html',
                                       controller: 'HistoryController',
@@ -111,9 +117,9 @@ $urlRouterProvider.otherwise('/login');
                                               }
                                        }
 
-                                }) 
+                                })
 
-                      .state('manageStudent', {
+                      .state('manage.manageStudent', {
                                       url: '/manageStudent',
                                       templateUrl: 'frontend/components/student/views/student.manage.html',
                                       controller: 'StudentController',
@@ -134,7 +140,7 @@ $urlRouterProvider.otherwise('/login');
 
                                 })
 
-                      .state('printOne', {
+                  .state('printOne', {
                                       url: '/printone/:id',
                                       templateUrl: 'frontend/components/payment/views/payment.one.print.html',
 																			controller: 'HistoryPrinterController',
@@ -155,6 +161,7 @@ $urlRouterProvider.otherwise('/login');
                                        }
 
                                 })
+
 
 
 });

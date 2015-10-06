@@ -19,15 +19,15 @@ if($rootScope.user.object.admin==true){
 
 
   admin.append(new gui.MenuItem({ label: 'Gerer les Niveaux/Prix', enabled: enabled, click: function() {
-        $state.go('level');
+        $state.go('manage.level');
   }}));
 
   admin.append(new gui.MenuItem({ label: 'Gerer les Eleves', enabled: enabled, click: function() {
-        $state.go('manageStudent');
+        $state.go('manage.manageStudent');
   }}));
   admin.append(new gui.MenuItem({ type: 'separator' }));
   admin.append(new gui.MenuItem({ label: 'Gerer les Utilisateurs', enabled: enabled, click: function() {
-        $state.go('user');
+        $state.go('manage.user');
   }}));
 
   var menubar = new gui.Menu({ type: 'menubar' });

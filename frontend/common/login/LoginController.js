@@ -19,7 +19,7 @@ loginModule.controller('LoginController', function($scope, $rootScope, Auth, $st
         Auth.getUser($scope.form).then(function(user) {
             $rootScope.user.loggedin = true;
             $rootScope.user.object = user;
-            $state.go('student');
+            $state.go('manage.student');
         }, function(error) {
             alert('Impossible de se connecter : '+error);
         });

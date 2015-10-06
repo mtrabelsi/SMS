@@ -89,7 +89,7 @@ userModule.factory('UserService', function(DB_URL, $q) {
                     }
                     else {
                         db.users.persistence.compactDatafile();
-                        console.log('user = ' + JSON.stringify(user));
+                        // console.log('user = ' + JSON.stringify(user));
                         defer.resolve(user);
                     }
                 });
