@@ -1,70 +1,98 @@
+<center>
+    <h1>Ecole La Joconde Jumelle</h1>
+    <h3>Résidense Elyes - Dar fadhal La soukra</h3>
+    <h5><i><b>Tel</b>: 70 949 009</i></h5>
+    <br/>
+    <h3><b>Reçu de paiement</b> le </h3><i> {{payment.datePayment |date:"dd/MM/yyyy 'à' h:mma" }}<i/>
+</center>
+</br>
+<div class="container">
+
+<div class="row">
+
+    <div class="col-md-6">
+        <b>Niveau:</b> <span ng-bind="payment._levelId" /> 
+        <br/> <b>Classe:</b> <span ng-bind="payment.class" />
+        <br/> <b>Nom:</b> <span ng-bind="payment.firstname" />
+        <br/> <b>Prenom:</b> <span ng-bind="payment.lastname" />
+        </br></br>
+        <span> <b>Mode de paiement:</b> <span ng-bind="payment.modePay" />
+        </span>
+        <br/>
+        <br/>
 
 
-         
-                <form name="paymentF">
-                    Espece:
-                    <input type="number" class="form-control" ng-model="payment.amount.brutAmount" />
-                    <hr/>
-                    <div class="row">
-                        <div class="col-md-6">Numero Cheque:
-                            <input type="text" class="form-control" ng-model="toAddCheque.number" />
-                        </div>
-                        <div class="col-md-6">
-                            Montant Cheque:
-                            <div class="input-group">
-                                <div class="input-group-addon">$</div>
-                                <input type="number" class="form-control" ng-model="toAddCheque.amount" placeholder="Montant...">
-                                <div class="input-group-addon"><b>DT</b></div>
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <i class="fa fa-university"></i> Banque:
-                            <input type="text" class="form-control" ng-model="toAddCheque.bank" />
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
-                                <label class="control-label"><i class="fa fa-calendar"></i> Date Echéance:</label>
-                                <input type="text" class="form-control" ng-model="toAddCheque.dateE" data-date-format="yyyy-MM-dd" data-date-type="date" data-min-date="today" data-autoclose="1" name="date2" bs-datepicker>
-                            </div>
-                        </div>
-                    </div>
-                    <button ng-click="addCheque()" type="button" style="margin-bottom:20px;" class="btn btn-success pull-right"><i class="fa fa-plus"></i></button>
-                    <table ng-table="tableChequeParams" class="table table-bordered table-hover">
-                        <tr ng-repeat="cheque in $data track by cheque.number">
-                            <td title="'Numero Cheque'" class="ng-table-group">
-                                {{cheque.number}}
-                            </td>
-                            <td title="'Montant Cheque'" class="ng-table-group">
-                                {{cheque.amount}}
-                            </td>
-                            <td title="'Banque'" class="ng-table-group">
-                                {{cheque.bank}}
-                            </td>
-                            <td title="'Date Echéance'" class="ng-table-group">
-                                {{cheque.dateE | date:"dd/MM/yyyy"}}
-                            </td>
-                            <td title="''">
-                                <button ng-click="removeCheque(cheque)" type="button" class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </table>
-
-                </form>
+        <table ng-if="payment.amount.cheques.length>0" class="table table-bordered">
+        <tr><th>Numéro</th><th>Montant</th><th>Banque</th><th>Date Echeance</th></tr>
+            <tr ng-repeat="cheque in payment.amount.cheques track by cheque.number">
+                <td>
+                    {{cheque.number}}
+                </td>
+                <td>
+                    {{cheque.amount}} DT
+                </td>
+                <td>
+                    {{cheque.bank}}
+                </td>
+                <td>
+                    {{cheque.dateE | date:"dd/MM/yyyy"}}
+                </td>
+            </tr>
+        </table>
 
 
-            <div>       
-                    <span><b> Votre Caisse :</b></span>
+    </div>
 
-                    <span>    
-                             {{entredAmount()}} 
-                    </span>
+    <div class="col-md-6">
 
-                  <span class="pull-right space-40">Total à payer : <b>{{amount}} DT</b></span>
-            </div>
-        
+        <div ng-if="payment.currentPayedProd.t1.length>0">
+            Trimestre 1:
+            <table class="table table-bordered">
+            <tr> <th>Produit</th><th>Prix</th></tr>
+                <tr ng-repeat="prod in payment.currentPayedProd.t1">
+                    <td>{{prod.product}}</td>    
+                    <td>{{prod.price}} DT</td>    
+                </tr>
+            </table>
+        </div>
 
+        <div ng-if="payment.currentPayedProd.t2.length>0">
+            Trimestre 2:
+            <table class="table table-bordered">
+            <tr> <th>Produit</th><th>Prix</th></tr>
+                <tr ng-repeat="prod in payment.currentPayedProd.t2">
+                    <td>{{prod.product}}</td>    
+                    <td>{{prod.price}} DT</td>    
+                </tr>
+            </table>
+        </div>
+
+        <div ng-if="payment.currentPayedProd.t3.length>0">
+            Trimestre 3:
+            <table class="table table-bordered">
+            <tr> <th>Produit</th><th>Prix</th></tr>
+                <tr ng-repeat="prod in payment.currentPayedProd.t3">
+                    <td>{{prod.product}}</td>    
+                    <td>{{prod.price}} DT</td>    
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<hr/>
+
+
+<div>
+    <span ng-if="payment.amount.brutAmount!=0"><b>Espece payé</b> : {{payment.amount.brutAmount}} DT </span><br/>
+    <span ng-if="payment.amount.cheques.length>0"><b> Cheque(s) payé(s) :</b> {{chequeAmount}} DT </span>
+
+    <span class="pull-right space-40"><b>Total payé</b> : {{chequeAmount+payment.amount.brutAmount}} DT</span>
+</div>
+
+
+</div>

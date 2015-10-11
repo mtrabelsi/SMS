@@ -1,7 +1,8 @@
 var paymentModule = angular.module('module.payment', []);
 
-paymentModule.controller('PaymentController', function(_, PaymentService, $state ,$rootScope, $scope, NgTableParams, $filter, $modal, ngTableParams, StudentService, students) {
-
+paymentModule.controller('PaymentController', function(_, PaymentService, $state ,$rootScope, $scope, NgTableParams, $filter, $modal, ngTableParams, levels, StudentService, students) {
+    $scope.classes = [{_id:'Jasmin'}, {_id:'Violette'}, {_id:'Rose'}, {_id:'Dahlia'}, {_id:'Lilas'}, {_id:'Lys'}, {_id:'Narcisse'}];
+    $scope.levels = levels;
   
     $scope.students = students;
 
@@ -26,6 +27,8 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
 
     var modalConfirmProduct = $modal({
         scope: $scope,
+        backdrop: 'static',
+        keyboard: false,
         controller: 'PaymentController',
         template: 'frontend/components/payment/views/payment.confirm.product.html',
         show: false
@@ -77,17 +80,23 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
     }
 
     function calculateEntredAmount() {
-        var entredAmount = 0;
-        entredAmount = entredAmount + $scope.payment.amount.brutAmount;
-
-        $scope.payment.amount.cheques.forEach(function(cheque) {
-            entredAmount = entredAmount + cheque.amount;
-        });
-        return entredAmount;
+        return  calculateChequesAmount() + $scope.payment.amount.brutAmount;
     }
 
+    function calculateChequesAmount(){
+        var chequeAmount = 0;
+
+        $scope.payment.amount.cheques.forEach(function(cheque) {
+            chequeAmount = chequeAmount + cheque.amount;
+        });
+        return chequeAmount;
+    }
+    //init all variables
     resetScope();
 
+    //only cheque amount
+    $scope.chequeAmount = calculateChequesAmount;
+    //cheques + brut amount
     $scope.entredAmount = calculateEntredAmount;
 
 

@@ -15,7 +15,7 @@ paymentModule.factory('PaymentService', function(DB_URL, $q) {
                 autoload: true
             });
 
-            db.payments.find({_id:id}, function(err, pmts) {
+            db.payments.findOne({_id:id}, function(err, pmts) {
                 if (err) {
                     console.log(err);
                     defer.reject('Error in the query, err = ' + err);

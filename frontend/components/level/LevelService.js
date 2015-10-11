@@ -16,6 +16,7 @@ levelModule.factory('LevelService', function(DB_URL, $q) {
                     console.log(err);
                     defer.reject('Error in the query, err = ' + err);
                 } else {
+
                     defer.resolve(lvs);
                 }
 

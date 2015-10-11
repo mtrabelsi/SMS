@@ -52,6 +52,15 @@ $urlRouterProvider.otherwise('/login');
                                               
                                                return defer.promise;
                                            },
+                                           levels: function (LevelService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               LevelService.getAllLevels().then(function (lvl) {
+                                                   defer.resolve(lvl);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
                                             $title: function() { 
                                                 return 'Ajouter Etudiants'; 
                                               }
@@ -90,6 +99,15 @@ $urlRouterProvider.otherwise('/login');
                                               
                                                return defer.promise;
                                            },
+                                            levels: function (LevelService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               LevelService.getAllLevels().then(function (lvl) {
+                                                   defer.resolve(lvl);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
                                            $title: function() { 
                                                 return 'Gerer les Paiments'; 
                                               }
@@ -108,6 +126,15 @@ $urlRouterProvider.otherwise('/login');
                                                    defer.resolve(sts);
                                                },function(error){
                                                    alert('failed to resolve history route :  '+error);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
+                                            levels: function (LevelService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               LevelService.getAllLevels().then(function (lvl) {
+                                                   defer.resolve(lvl);
                                                });
                                               
                                                return defer.promise;
@@ -133,6 +160,15 @@ $urlRouterProvider.otherwise('/login');
                                               
                                                return defer.promise;
                                            },
+                                            levels: function (LevelService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               LevelService.getAllLevels().then(function (lvl) {
+                                                   defer.resolve(lvl);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
                                             $title: function() { 
                                                 return 'Gerer Etudiants'; 
                                               }
@@ -145,12 +181,21 @@ $urlRouterProvider.otherwise('/login');
                                       templateUrl: 'frontend/components/payment/views/payment.one.print.html',
 																			controller: 'HistoryPrinterController',
                                       resolve: {
-                                           payments: function (PaymentService, $q, $stateParams) {
+                                           payment: function (PaymentService, $q, $stateParams) {
                                                var defer = $q.defer();
                                                PaymentService.getPaymentById($stateParams.id).then(function (sts) {
                                                    defer.resolve(sts);
                                                },function(error){
                                                    alert('failed to resolve history route :  '+error);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
+                                            levels: function (LevelService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               LevelService.getAllLevels().then(function (lvl) {
+                                                   defer.resolve(lvl);
                                                });
                                               
                                                return defer.promise;

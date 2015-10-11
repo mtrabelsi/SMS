@@ -82,7 +82,7 @@
 
                         <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
                                         <label class="control-label pull-left"><i class="fa fa-calendar-o"></i> Date Paiement: (Admin)</label>
-                                        <input ng-disabled="user.object.admin==false" type="text" class="form-control" ng-model="payment.datePayment" data-date-format="yyyy-MM-dd" data-date-type="date" data-min-date="today"data-autoclose="1" name="date2" bs-datepicker>
+                                        <input ng-disabled="user.object.admin==false" type="text" class="form-control" ng-model="payment.datePayment" data-date-format="yyyy-MM-dd" data-date-type="date" data-autoclose="1" name="date2" bs-datepicker>
                         </div>
                      </div>
 
@@ -91,7 +91,9 @@
                         <button type="button" class="btn btn-default" ng-click="$parent.paymentStep1();$hide();">
                             <i class="fa fa-backward"></i> Etape précédente
                         </button>
-                        <button ng-disabled="entredAmount()!=amount||amount==0" type="button" class="btn btn-primary" ng-click="$parent.finalPayment(toPayStudent);$hide();">
+                
+
+            <button ng-disabled="entredAmount()!=amount||amount==0" type="button" class="btn btn-primary" ng-click="$parent.finalPayment(toPayStudent);$hide();">
                             <i class="fa fa fa-paypal"></i> Payer
                         </button>
 

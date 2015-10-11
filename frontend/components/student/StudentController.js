@@ -1,7 +1,25 @@
 var studentModule = angular.module('module.student', []);
 
-studentModule.controller('StudentController', function(_, $q, $scope, NgTableParams, Toolbar, LevelService, StudentService, students) {
+studentModule.controller('StudentController', function(_, $q,levels, ngTableDefaults ,$rootScope, $scope, NgTableParams, Toolbar, LevelService, StudentService, students) {
     Toolbar.Window().maximize();
+
+    $scope.levels = levels;
+    $scope.classes = [{_id:'Jasmin'}, {_id:'Violette'}, {_id:'Rose'}, {_id:'Dahlia'}, {_id:'Lilas'}, {_id:'Lys'}, {_id:'Narcisse'}];
+    // $scope.classes = ['Jasmin', 'Violette', 'Rose', 'Dahlia', 'Lilas', 'Lys', 'Narcisse'];
+
+
+$scope.getLevels = function () {
+    var defer = $q.defer();
+    LevelService.getAllLevels().then(function(lvs) {
+    if(lvs)
+        defer.resolve(lvs);  
+    else
+        defer.reject('erreur inconnue');
+    });
+
+    return defer.promise;
+};
+
 
     $scope.toDeleteStudent = {};
     $scope.toEditStudent = {};
@@ -13,12 +31,6 @@ studentModule.controller('StudentController', function(_, $q, $scope, NgTablePar
         dataset: $scope.students
     });
 
-    $scope.levels = [];
-    $scope.classes = ['Jasmin', 'Violette', 'Rose', 'Dahlia', 'Lilas', 'Lys', 'Narcisse'];
-
-    LevelService.getAllLevels().then(function(lvs) {
-        $scope.levels = lvs;
-    });
 
     $scope.updateStudent = function(student) {
         StudentService.upsertStudent(student).then(function(usr) {

@@ -6,6 +6,7 @@ toolbarModule.factory('Toolbar', function($state, $rootScope) {
   var win = gui.Window.get();
   var file = new gui.Menu();
   var admin = new gui.Menu();
+  var print = new gui.Menu();
 
   file.append(new gui.MenuItem({ label: 'Fermer',click:function(){
     win.close();
@@ -17,6 +18,10 @@ if($rootScope.user.object.admin==true){
   enabled = true;
 }
 
+
+  print.append(new gui.MenuItem({ label: "Imprimer l'ecran", click: function() {
+       window.print();
+  }}));
 
   admin.append(new gui.MenuItem({ label: 'Gerer les Niveaux/Prix', enabled: enabled, click: function() {
         $state.go('manage.level');
@@ -34,6 +39,7 @@ if($rootScope.user.object.admin==true){
 
    menubar.append(new gui.MenuItem({ label: 'Fichier', submenu: file}));
    menubar.append(new gui.MenuItem({ label: 'Administration', submenu: admin}));
+   menubar.append(new gui.MenuItem({ label: 'Imprimante', submenu: print}));
 
    win.menu = menubar;
 
