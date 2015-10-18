@@ -3,8 +3,31 @@
 <button ng-click="loadInsertedStudent()" type="button" class="btn btn-primary" data-animation="am-fade-and-scale" data-template="frontend/components/payment/views/payment.create.html" data-placement="center" bs-modal="modal">
     <i class="fa fa-user-plus"></i> Créer Eleve
 </button>-->
+<div class="row">
 
-<br/><br/>
+  <div class="col-md-4">
+      <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
+        <label class="control-label pull-left"><i class="fa fa-calendar-o"></i> Date Debut: </label>
+        <input ng-disabled="user.object.admin==false" type="text" class="form-control" ng-model="search.dateDebutPayment" data-date-format="yyyy-MM-dd" data-date-type="date" data-autoclose="1" name="date2" cs-date-to-iso bs-datepicker>
+      </div> 
+  </div>
+
+
+  <div class="col-md-4">
+    <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
+        <label class="control-label pull-left"><i class="fa fa-calendar-o"></i> Date Fin: </label>
+        <input ng-disabled="user.object.admin==false" type="text" class="form-control" ng-model="search.dateFinPayment" data-date-format="yyyy-MM-dd" data-date-type="date" data-autoclose="1" name="date2" cs-date-to-iso bs-datepicker>
+      </div>
+  </div>
+
+  <div class="col-md-4">
+    <br/>
+    <button type="button" ng-click="filterTable()" class="btn btn-success">Chercher</button>
+  </div>
+
+</div>
+
+  
 <!--
 {
         "amount":{"payedAmount":12,"brutAmount":12,"cheques":[]},
@@ -18,6 +41,7 @@
     } -->
 
 <table ng-table="tableParams"  class="table table-bordered table-hover">
+
      <tr ng-repeat="payment in $data">
          <td title="'Niveau'" class="ng-table-group" filter="{ '_levelId': 'select' }"filter-data="levels" sortable="'_levelId'">
            {{payment._levelId}}
@@ -30,9 +54,6 @@
           </td>
          <td title="'Prenom'" class="ng-table-group" filter="{ 'lastname': 'text' }" sortable="'lastname'">
            {{payment.lastname}}
-          </td>
-         <td title="'Montant'" class="ng-table-group" sortable="'amount.payedAmount'">
-           {{payment.amount.payedAmount}}
           </td>
          <td title="'Mode Paiment'" class="ng-table-group" filter="{ 'modePay': 'text' }" sortable="'modePay'">
            {{payment.modePay}}
@@ -64,6 +85,9 @@
            
           </td>
 
+         <td title="'Montant'" class="ng-table-group" sortable="'amount.payedAmount'">
+           {{payment.amount.payedAmount}}
+          </td>
 
 <!--
          <td title="'Prix'" width="200">
@@ -78,4 +102,6 @@
              </button>
          </td>-->
      </tr>
+     <tr><td colspan="7"><center><b style="color: red">TOTAL inclus cheques non payés</b></center></td><td style="color: red"><b style="color: red">{{totale}}</td></tr>
+     <tr><td colspan="7"><center><b style="color: green">TOTAL réel</b></center></td><td><b style="color: green">pas encors</b></td></tr>
 </table>

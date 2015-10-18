@@ -4,6 +4,7 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
     $scope.classes = [{_id:'Jasmin'}, {_id:'Violette'}, {_id:'Rose'}, {_id:'Dahlia'}, {_id:'Lilas'}, {_id:'Lys'}, {_id:'Narcisse'}];
     $scope.levels = levels;
   
+  window.sc = $scope;
     $scope.students = students;
 
     $scope.tableParams = new NgTableParams({}, {
@@ -52,29 +53,25 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
     });
 
     $scope.confirmStart = function(student) {
+        //init all variables
+        resetScope();
         $scope.toPayStudent = student;
         modalConfirmStart.$promise.then(modalConfirmStart.show);
     }
 
 
     $scope.confirmProduct = function(t,p) {
-      if($scope.toPayStudent.products[t][p]==true){
          $scope.newlyClickedProducts[t][p] = true;//this will be used for calculate amount
          $scope.clickedProduct = {t:t,p:p};
-        modalConfirmProduct.$promise.then(modalConfirmProduct.show);
-      }else{
-        $scope.toPayStudent.products[t][p] = true;
-      }
+         modalConfirmProduct.$promise.then(modalConfirmProduct.show);
+    
     }
-
 
     $scope.paymentStep1 = function() {
         modalPayment1.$promise.then(modalPayment1.show);
     }
 
     $scope.paymentStep2 = function(student) {
-        //to be changed with normale users we get prices from levels 
-        //with admin loggedin we took this from the user's price object
         $scope.amount = $rootScope.calculateAmount($scope.newlyClickedProducts, student.price);
         modalPayment2.$promise.then(modalPayment2.show);
     }
@@ -83,7 +80,7 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
         return  calculateChequesAmount() + $scope.payment.amount.brutAmount;
     }
 
-    function calculateChequesAmount(){
+    function calculateChequesAmount() {
         var chequeAmount = 0;
 
         $scope.payment.amount.cheques.forEach(function(cheque) {
@@ -98,7 +95,6 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
     $scope.chequeAmount = calculateChequesAmount;
     //cheques + brut amount
     $scope.entredAmount = calculateEntredAmount;
-
 
     $scope.tableChequeParams = new NgTableParams({}, {
         counts: [], //no pagination
@@ -132,6 +128,7 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
     }
 
     function resetScope() {
+
           $scope.newlyClickedProducts = {
             t1: {
                 s: false,
@@ -193,6 +190,11 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
 
     //final payment
     $scope.finalPayment = function(student) {
+
+
+        $scope.payment.datePayment = moment($scope.payment.datePayment).format("YYYY-MM-DD");
+
+
         $scope.payment.modePay = getModepay();
         $scope.payment.amount.payedAmount = $scope.amount;
         $scope.payment.firstname = student.firstname;
