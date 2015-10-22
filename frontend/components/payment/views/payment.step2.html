@@ -27,7 +27,7 @@
                     <hr/>
                     <div class="row">
                         <div class="col-md-6">Numero Cheque:
-                            <input type="text" class="form-control" ng-model="toAddCheque.number" />
+                            <input type="number" class="form-control" ng-model="toAddCheque.number" />
                         </div>
                         <div class="col-md-6">
                             Montant Cheque:
@@ -53,7 +53,7 @@
                     </div>
                     <button ng-click="addCheque()" type="button" style="margin-bottom:20px;" class="btn btn-success pull-right"><i class="fa fa-plus"></i></button>
                     <table ng-table="tableChequeParams" class="table table-bordered table-hover">
-                        <tr ng-repeat="cheque in $data track by cheque.number">
+                        <tr ng-repeat="cheque in payment.amount.cheques track by cheque.number">
                             <td title="'Numero Cheque'" class="ng-table-group">
                                 {{cheque.number}}
                             </td>

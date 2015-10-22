@@ -102,9 +102,13 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
     });
 
     $scope.addCheque = function() {
-        $scope.payment.amount.cheques.push($scope.toAddCheque);
-        $scope.toAddCheque = {};
-        $scope.tableChequeParams.reload();
+        if($scope.toAddCheque.number>0&&$scope.toAddCheque.amount>0&& typeof $scope.toAddCheque.bank!="undefined"&& typeof $scope.toAddCheque.dateE!="undefined"){
+            $scope.payment.amount.cheques.push($scope.toAddCheque);
+            $scope.toAddCheque = {};
+            $scope.tableChequeParams.reload();    
+        }else{
+            alert("Vérifiez vos données de cheque!");
+        }
     }
 
     $scope.removeCheque = function(cheque) {
