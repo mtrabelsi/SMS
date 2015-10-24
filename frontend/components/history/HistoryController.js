@@ -17,17 +17,31 @@ $scope.search = {
         return ;
         
          var totale = 0;
+         var rtotale =0;
+         var now = moment(new Date()).format("YYYY-MM-DD");
+
          pmts.forEach(function(payment) {
              totale = totale  + payment.amount.payedAmount;
+
+             //look for real amount only 
+             rtotale = rtotale + payment.amount.brutAmount;
+
+             payment.amount.cheques.forEach(function(cheque){
+                if(cheque.dateE<=now){
+                  rtotale = rtotale + cheque.amount;
+                }
+             });
+
          });
 
+        $scope.rtotale = rtotale;
         $scope.totale = totale;
       };
 
   //  $scope.calculateTotal = calculateTotal;  
 
-  //  $scope.calculateTotal($scope.payments);
-// {"amount":{"payedAmount":49,"brutAmount":29,"cheques":[{"number":"12","amount":10,"bank":"zitouna","dateE":{"$$date":1444604400000}},{"number":"13","amount":10,"bank":"zitouna","dateE":{"$$date":1445986800000}}]},"currentPayedProd":{"t1":[{"product":"c","price":4}],"t2":[{"product":"c","price":45}],"t3":[]},"datePayment":{"$$date":1444598990043},"modePay":"Espece/Cheques","firstname":"marwn1","lastname":"marwn1","_levelId":"Niveau 2","class":"Jasmin","_id":"ujtZCXEOVu8dHxUo"}
+ //  $scope.calculateTotal($scope.payments);
+
     // function calculateTotaleCheque(cheques) {
     //     var totaleCheques = 0;
     //     cheques.forEach(function(cheque){
