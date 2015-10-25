@@ -1,16 +1,42 @@
 var historyModule = angular.module('module.history', []);
 
 
-historyModule.controller('HistoryController', function(_, $q, $filter, $scope, levels, NgTableParams, PaymentService, payments) {
+historyModule.controller('HistoryController', function(_, $q, $modal, $filter, $scope, levels, NgTableParams, PaymentService, payments) {
 	$scope.levels = levels;
     $scope.classes = [{_id:'Jasmin'}, {_id:'Violette'}, {_id:'Rose'}, {_id:'Dahlia'}, {_id:'Lilas'}, {_id:'Lys'}, {_id:'Narcisse'}];
 
-$scope.search = {
-    dateDebutPayment: "",
-    dateFinPayment : ""
-}
+    $scope.search = {
+        dateDebutPayment: "",
+        dateFinPayment : ""
+    }
 
     $scope.payments = payments;
+
+
+    function calculateChequesAmount(payment) {
+        var chequeAmount = 0;
+
+        payment.amount.cheques.forEach(function(cheque) {
+            chequeAmount = chequeAmount + cheque.amount;
+        });
+        return chequeAmount;
+    }
+
+    var modalShowDetail = $modal({
+        scope: $scope,
+        controller: 'HistoryController',
+        template: 'frontend/components/history/views/history.detail.html',
+        show: false
+    });
+
+
+    $scope.showDetail = function(payment) {
+        $scope.toShowPayment = payment;
+        $scope.chequeAmount = calculateChequesAmount(payment);
+
+        modalShowDetail.$promise.then(modalShowDetail.show);
+    };
+
 
    function calculateTotal(pmts) {
     if(typeof pmts == "undefined")
@@ -38,31 +64,7 @@ $scope.search = {
         $scope.totale = totale;
       };
 
-  //  $scope.calculateTotal = calculateTotal;  
-
- //  $scope.calculateTotal($scope.payments);
-
-    // function calculateTotaleCheque(cheques) {
-    //     var totaleCheques = 0;
-    //     cheques.forEach(function(cheque){
-    //         totaleCheques = totaleCheques + cheque.amount;
-    //     });
-    //     return totaleCheques;
-    // }
-
-    /*
-  $scope.tableParams = new ngTableParams({
-+                page: 1,   // show first page
-+                total: 1,  // value less than count hide pagination
-+                count: 5,  // count per page
-+                counts: [] // hide page counts control
-+            });
-+            
-+            $scope.$watch('tableParams', function(params) {
-+
-+                $scope.users = data.slice((params.page - 1) * params.count, params.page * params.count);
-+            }, true);
-    */
+    
 
     $scope.tableParams = new NgTableParams({
         count: $scope.payments.length
@@ -73,18 +75,13 @@ $scope.search = {
     function getData(params) {
 
        var   filtredData    = $filter('filter')($scope.payments, params.filter());
+             filtredData    = $filter('orderBy')(filtredData, params.orderBy());
        var filtredData2 = [];         
         if((typeof $scope.search.dateDebutPayment!= "undefined")&&$scope.search.dateDebutPayment && (typeof $scope.search.dateFinPayment!="undefined")&&$scope.search.dateFinPayment){
-            console.log($scope.search);
             
             filtredData.forEach(function(pay){
 
-                console.log('---------');
-                console.log(pay.datePayment);
-
                 if(pay.datePayment>=$scope.search.dateDebutPayment&&pay.datePayment<=$scope.search.dateFinPayment){
-
-                  
                     filtredData2.push(pay);
                 }
             })
@@ -98,10 +95,6 @@ $scope.search = {
 $scope.filterTable =  function(){
         $scope.tableParams.reload();
 }
-   // $scope.$watch('tableParams', function(params) {
-
-   //              $scope.users = data.slice((params.page - 1) * params.count, params.page * params.count);
-   //          }, true);
 
 
 });

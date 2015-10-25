@@ -1,6 +1,6 @@
 var studentModule = angular.module('module.student', []);
 
-studentModule.controller('StudentController', function(_, $q,levels, ngTableDefaults ,$rootScope, $scope, NgTableParams, Toolbar, LevelService, StudentService, students) {
+studentModule.controller('StudentController', function(_, $q, levels, $filter, ngTableDefaults ,$rootScope, $scope, NgTableParams, Toolbar, LevelService, StudentService, students) {
     Toolbar.Window().maximize();
 
     $scope.levels = levels;
@@ -99,5 +99,37 @@ $scope.getLevels = function () {
         $scope.toInserStudent = {};
     }
 
+
+    //unpayed 
+    $scope.checkedTrimester = '';
+
+
+    $scope.tableParamsUnpayed = new NgTableParams({
+        count: $scope.students.length
+    }, {
+        getData: getData
+    });
+
+    function getData(params) {
+
+       var   filtredData    = $filter('filter')($scope.students, params.filter());
+             filtredData    = $filter('orderBy')(filtredData, params.orderBy());
+       var filtredData2 = [];         
+        if($scope.checkedTrimester!=''){ 
+            filtredData.forEach(function(student) {
+                if(student.products[$scope.checkedTrimester].s==false){
+                    filtredData2.push(student);
+                }
+            })
+        }
+        
+       return filtredData2;
+    }
+
+    $scope.filterTable =  function(){
+            $scope.tableParamsUnpayed.reload();
+    };
+
+    
     
 });

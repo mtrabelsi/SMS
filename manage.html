@@ -1,16 +1,16 @@
-  <div class="col-md-2">
-            <div class="list-group" ng-if="user.loggedin">
-                <li class="list-group-item list-group-item-success"><b> Menu </b></li>
-                <a class="list-group-item" href="#" ui-sref="manage.student">
-                    <li class="fa fa-users lg"> </li> Ajouter Eleve</a>
-                <a class="list-group-item" href="#" ui-sref="manage.payment">
-                    <li class="fa fa-cart-plus lg"> </li> Paiment</a>
-                <a class="list-group-item" ui-sref="manage.history" href="#">
-                    <li class="fa fa-history lg"> </li> Historique</a>
-                <a class="list-group-item disabled" href="#">
-                    <li class="fa fa-exclamation-triangle lg"> </li> Impayés</a>
-            </div>
-        </div>
-        <div class="col-md-10">
-            <div ui-view></div>
-        </div>
+<div class="col-md-2">
+    <div class="list-group" ng-if="user.loggedin">
+        <li class="list-group-item list-group-item-success"><b> Menu </b></li>
+        <a class="list-group-item" href="#" ui-sref="manage.student">
+            <li class="fa fa-users lg"> </li> Ajouter Eleve</a>
+        <a class="list-group-item" href="#" ui-sref="manage.payment">
+            <li class="fa fa-cart-plus lg"> </li> Paiment</a>
+        <a class="list-group-item" ui-sref="manage.history" href="#">
+            <li class="fa fa-history lg"> </li> Historique</a>
+        <a class="list-group-item" href="#" ui-sref="manage.unpayed">
+            <li class="fa fa-exclamation-triangle lg"> </li> Impayés</a>
+    </div>
+</div>
+<div class="col-md-10">
+    <div ui-view></div>
+</div>

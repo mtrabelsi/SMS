@@ -62,7 +62,7 @@ $urlRouterProvider.otherwise('/login');
                                                return defer.promise;
                                            },
                                             $title: function() { 
-                                                return 'Ajouter Etudiants'; 
+                                                return 'Ajouter Eleves'; 
                                               }
                                        }
                                 })
@@ -170,7 +170,37 @@ $urlRouterProvider.otherwise('/login');
                                                return defer.promise;
                                            },
                                             $title: function() { 
-                                                return 'Gerer Etudiants'; 
+                                                return 'Gerer Eleves'; 
+                                              }
+                                       }
+
+                                })
+
+                      .state('manage.unpayed', {
+                                      url: '/unpayed',
+                                      templateUrl: 'frontend/components/student/views/student.unpayed.html',
+                                      controller: 'StudentController',
+                                      resolve: {
+                                           students: function (StudentService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               StudentService.getAllStudents().then(function (sts) {
+                                                   defer.resolve(sts);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
+                                            levels: function (LevelService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               LevelService.getAllLevels().then(function (lvl) {
+                                                   defer.resolve(lvl);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
+                                            $title: function() { 
+                                                return 'Gerer les Eleves Impayés'; 
                                               }
                                        }
 

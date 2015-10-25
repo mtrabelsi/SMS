@@ -40,9 +40,9 @@
   
     } -->
 
-<table ng-table="tableParams"  class="table table-bordered table-hover">
+<table ng-table="tableParams"  class="table table-bordered table-hover printable">
 
-     <tr ng-repeat="payment in $data">
+     <tr ng-repeat="payment in $data" ng-click="showDetail(payment);">
          <td title="'Niveau'" class="ng-table-group" filter="{ '_levelId': 'select' }"filter-data="levels" sortable="'_levelId'">
            {{payment._levelId}}
           </td>

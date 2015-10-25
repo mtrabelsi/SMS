@@ -18,6 +18,8 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
         $scope.toPayStudent.products[t][p] = false;
         $scope.newlyClickedProducts[t][p] = false;//this will be used for calculate amount
     }
+
+ 
 //to be migrated to the frontend to compare performance !!!!!!
     var modalConfirmStart = $modal({
         scope: $scope,
