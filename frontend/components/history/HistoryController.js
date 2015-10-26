@@ -47,7 +47,22 @@ historyModule.controller('HistoryController', function(_, $q, $modal, $filter, $
          var now = moment(new Date()).format("YYYY-MM-DD");
 
          pmts.forEach(function(payment) {
-             totale = totale  + payment.amount.payedAmount;
+            if($scope.radios=="all") {
+                totale = totale  + payment.amount.payedAmount;
+            } else {
+                payment.currentPayedProd.t1.forEach(function(prod){
+                    if(prod.product==$scope.radios)
+                        totale = totale + prod.price;
+                });
+                payment.currentPayedProd.t2.forEach(function(prod){
+                    if(prod.product==$scope.radios)
+                        totale = totale + prod.price;
+                });
+                payment.currentPayedProd.t3.forEach(function(prod){
+                    if(prod.product==$scope.radios)
+                        totale = totale + prod.price;
+                });
+            }
 
              //look for real amount only 
              rtotale = rtotale + payment.amount.brutAmount;
@@ -64,7 +79,7 @@ historyModule.controller('HistoryController', function(_, $q, $modal, $filter, $
         $scope.totale = totale;
       };
 
-    
+   $scope.radios = "all";
 
     $scope.tableParams = new NgTableParams({
         count: $scope.payments.length
@@ -92,10 +107,13 @@ historyModule.controller('HistoryController', function(_, $q, $modal, $filter, $
        return filtredData2;
     }
 
-$scope.filterTable =  function(){
-        $scope.tableParams.reload();
-}
+    $scope.filterTable =  function(){
+            $scope.tableParams.reload();
+    }
 
+    $scope.$watch('radios', function() {
+          $scope.filterTable();
+    });
 
 });
 
@@ -103,7 +121,7 @@ $scope.filterTable =  function(){
 historyModule.controller('HistoryPrinterController', function( $scope, NgTableParams, PaymentService, payment, levels) {
 
     $scope.payment = payment;
-	$scope.tableChequeParams = new NgTableParams({}, {
+    $scope.tableChequeParams = new NgTableParams({}, {
         dataset: $scope.payment.amount.cheques
     });
 
