@@ -13,7 +13,8 @@ var app =  angular.module('module.app',
 										'module.level',
 										'module.payment',
 										'module.user',
-										'module.history'
+										'module.history',
+										'module.cheque'
 										]);
 
 app.directive("csDateToIso", function () {

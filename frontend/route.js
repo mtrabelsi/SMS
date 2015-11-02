@@ -146,6 +146,29 @@ $urlRouterProvider.otherwise('/login');
 
                                 })
 
+                             .state('manage.cheque', {
+                                      url: '/cheque',
+                                      templateUrl: 'frontend/components/cheque/views/cheque.html',
+                                      controller: 'ChequeController',
+                                      resolve: {
+                                           payments: function (PaymentService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               PaymentService.getAllPayments().then(function (sts) {
+                                                   defer.resolve(sts);
+                                               },function(error){
+                                                   alert('failed to resolve history route :  '+error);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
+                                           $title: function() { 
+                                                return 'Gerer cheques'; 
+                                              }
+                                       }
+
+                                })
+
                       .state('manage.manageStudent', {
                                       url: '/manageStudent',
                                       templateUrl: 'frontend/components/student/views/student.manage.html',

@@ -1,0 +1,21 @@
+<table ng-table="tableParams"  class="table table-bordered table-hover printable">
+
+ <!-- Object {number: 6565, amount: 40, bank: "jjjj", dateE: "2015-10-25"}-->
+
+     <tr ng-repeat="cheque in $data">     
+         <td title="'Numéro'" class="ng-table-group" filter="{ 'number': 'text' }" sortable="'number'">
+           {{cheque.number}}
+          </td>
+         <td title="'Montant'" class="ng-table-group" filter="{ 'amount': 'text' }"sortable="'amount'">
+           {{cheque.amount}}
+          </td>
+         <td title="'Banque'" class="ng-table-group" filter="{ 'bank': 'text' }" sortable="'bank'">
+           {{cheque.bank}}
+          </td>
+         <td title="'Date Echéance'" class="ng-table-group" sortable="'dateE'">
+           {{cheque.dateE}}
+          </td>
+     </tr>
+     <tr><td colspan="3"><center><b>Total</b></center></td><td><center><b>{{total}}</b></center></td></tr>
+
+</table>
