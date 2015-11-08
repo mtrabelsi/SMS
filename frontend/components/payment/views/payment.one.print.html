@@ -1,27 +1,97 @@
 <center>
-    <h1>Ecole La Joconde Jumelle</h1>
-    <h3>Résidense Elyes - Dar fadhal La soukra</h3>
-    <h5><i><b>Tel</b>: 70 949 009</i></h5>
-    <br/>
-    <h3><b>Reçu de <a ui-sref="manage.payment">Paiement</a></b> le </h3><i> {{payment.datePayment |date:"dd/MM/yyyy 'à' h:mma" }}<i/>
-</center>
-</br>
-<div class="container">
-
-<div class="row">
-
-    <div class="col-md-6">
-        <b>Niveau:</b> <span ng-bind="payment._levelId" /> 
-        <br/> <b>Classe:</b> <span ng-bind="payment.class" />
-        <br/> <b>Nom:</b> <span ng-bind="payment.firstname" />
-        <br/> <b>Prenom:</b> <span ng-bind="payment.lastname" />
-        </br></br>
-        <span> <b>Mode de paiement:</b> <span ng-bind="payment.modePay" />
+    <h2>Ecole La Joconde Jumelle</h2>
+    <h4>Résidense Elyes - Dar fadhal La soukra</h4>
+    <h6><i><b>Tel</b>: 70 949 009</i></h6>
+    
+    <h4><b>Reçu de <a ui-sref="manage.payment">Paiement</a></b> le {{payment.datePayment |date:"dd/MM/yyyy 'à' h:mma" }} </h4>
+    <i>
+        <span ng-if="payment.currentPayedProd.t1.length>0">
+        Trimestre 1
         </span>
-        <br/>
-        <br/>
+
+        <span ng-if="payment.currentPayedProd.t2.length>0">
+        Trimestre 2
+        </span>
+
+        <span ng-if="payment.currentPayedProd.t3.length>0">
+        Trimestre 3
+        </span> 
+
+    <i/>
+</center>
+
+<table cellspacing="0px" style="border-collapse:separate; border-spacing:15px 15px;">
+<tr><td colspan="2">
+        <b>Nom:</b> <span ng-bind="payment.firstname" />
+        <br/> <b>Prenom:</b> <span ng-bind="payment.lastname" />
+        <br/> <b>Niveau:</b> <span ng-bind="payment._levelId" /> 
+        <br/> <b>Classe:</b> <span ng-bind="payment.class" />
+        
+</td></tr>
 
 
+
+<tr>
+    <td>
+
+<div ng-if="payment.currentPayedProd.t1.length>0">
+          
+            <table class="table table-bordered">
+                <tr ng-repeat="prod in payment.currentPayedProd.t1">
+                    <td>
+                        <span ng-if="prod.product=='a'">Activité</span>
+                        <span ng-if="prod.product=='p'">Panier</span>
+                        <span ng-if="prod.product=='c'">Cantine</span>
+                        <span ng-if="prod.product=='s'">Scolarité</span>
+                        <span ng-if="prod.product=='g'">Garderie</span>
+                    </td>    
+                    <td>{{prod.price}} DT</td>    
+                </tr>
+            </table>
+        </div>
+
+        <div ng-if="payment.currentPayedProd.t2.length>0">
+            
+            <table class="table table-bordered">
+          
+                <tr ng-repeat="prod in payment.currentPayedProd.t2">
+                    <td>
+                        <span ng-if="prod.product=='a'">Activité</span>
+                        <span ng-if="prod.product=='p'">Panier</span>
+                        <span ng-if="prod.product=='c'">Cantine</span>
+                        <span ng-if="prod.product=='s'">Scolarité</span>
+                        <span ng-if="prod.product=='g'">Garderie</span>
+                    </td>    
+                    <td>{{prod.price}} DT</td>    
+                </tr>
+            </table>
+        </div>
+
+        <div ng-if="payment.currentPayedProd.t3.length>0">
+            
+            <table class="table table-bordered">
+    
+                <tr ng-repeat="prod in payment.currentPayedProd.t3">
+                    <td>
+                        <span ng-if="prod.product=='a'">Activité</span>
+                        <span ng-if="prod.product=='p'">Panier</span>
+                        <span ng-if="prod.product=='c'">Cantine</span>
+                        <span ng-if="prod.product=='s'">Scolarité</span>
+                        <span ng-if="prod.product=='g'">Garderie</span>
+                    </td>    
+                    <td>{{prod.price}} DT</td>    
+                </tr>
+            </table>
+        </div>
+
+    </td>
+
+
+    <td>
+ <span> <b>Mode de paiement:</b> <span ng-bind="payment.modePay" />
+        <br/>
+
+        </span>
         <table ng-if="payment.amount.cheques.length>0" class="table table-bordered">
         <tr><th>Numéro</th><th>Montant</th><th>Banque</th><th>Date Echeance</th></tr>
             <tr ng-repeat="cheque in payment.amount.cheques track by cheque.number">
@@ -39,60 +109,13 @@
                 </td>
             </tr>
         </table>
+    </td>
+</tr>
 
 
-    </div>
-
-    <div class="col-md-6">
-
-        <div ng-if="payment.currentPayedProd.t1.length>0">
-            Trimestre 1:
-            <table class="table table-bordered">
-            <tr> <th>Produit</th><th>Prix</th></tr>
-                <tr ng-repeat="prod in payment.currentPayedProd.t1">
-                    <td>{{prod.product}}</td>    
-                    <td>{{prod.price}} DT</td>    
-                </tr>
-            </table>
-        </div>
-
-        <div ng-if="payment.currentPayedProd.t2.length>0">
-            Trimestre 2:
-            <table class="table table-bordered">
-            <tr> <th>Produit</th><th>Prix</th></tr>
-                <tr ng-repeat="prod in payment.currentPayedProd.t2">
-                    <td>{{prod.product}}</td>    
-                    <td>{{prod.price}} DT</td>    
-                </tr>
-            </table>
-        </div>
-
-        <div ng-if="payment.currentPayedProd.t3.length>0">
-            Trimestre 3:
-            <table class="table table-bordered">
-            <tr> <th>Produit</th><th>Prix</th></tr>
-                <tr ng-repeat="prod in payment.currentPayedProd.t3">
-                    <td>{{prod.product}}</td>    
-                    <td>{{prod.price}} DT</td>    
-                </tr>
-            </table>
-        </div>
-
-    </div>
-</div>
-
-
-
-
-<hr/>
-
-
-<div>
+<tr><td colspan="2">
     <span ng-if="payment.amount.brutAmount!=0"><b>Espece payé</b> : {{payment.amount.brutAmount}} DT </span><br/>
     <span ng-if="payment.amount.cheques.length>0"><b> Cheque(s) payé(s) :</b> {{chequeAmount}} DT </span>
-
     <span class="pull-right space-40"><b>Total payé</b> : {{chequeAmount+payment.amount.brutAmount}} DT</span>
-</div>
-
-
-</div>
+</td></tr>
+</table>

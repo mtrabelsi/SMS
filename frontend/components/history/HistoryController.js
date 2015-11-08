@@ -4,6 +4,7 @@ var historyModule = angular.module('module.history', []);
 historyModule.controller('HistoryController', function(_, $q, $modal, $filter, $scope, levels, NgTableParams, PaymentService, payments) {
 	$scope.levels = levels;
     $scope.classes = [{_id:'Jasmin'}, {_id:'Violette'}, {_id:'Rose'}, {_id:'Dahlia'}, {_id:'Lilas'}, {_id:'Lys'}, {_id:'Narcisse'}];
+    $scope.now =  moment(new Date()).format("YYYY-MM-DD");
 
     $scope.search = {
         dateDebutPayment: "",
@@ -82,6 +83,7 @@ historyModule.controller('HistoryController', function(_, $q, $modal, $filter, $
    $scope.radios = "all";
 
     $scope.tableParams = new NgTableParams({
+        sorting: { name: "asc" },
         count: $scope.payments.length
     }, {
         getData: getData
@@ -121,7 +123,9 @@ historyModule.controller('HistoryController', function(_, $q, $modal, $filter, $
 historyModule.controller('HistoryPrinterController', function( $scope, NgTableParams, PaymentService, payment, levels) {
 
     $scope.payment = payment;
-    $scope.tableChequeParams = new NgTableParams({}, {
+    $scope.tableChequeParams = new NgTableParams({
+        sorting: { name: "asc" } 
+    }, {
         dataset: $scope.payment.amount.cheques
     });
 
