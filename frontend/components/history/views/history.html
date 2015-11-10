@@ -1,3 +1,5 @@
+<div ng-class="{'hidee': printOneHistory}">
+
 <center>
   <div class="onlyPrint">
   <h3>Historique de paiment de <b>{{search.dateDebutPayment}}</b> à <b>{{search.dateFinPayment}}</b></h3>  
@@ -138,9 +140,12 @@
                  <i class="fa fa-trash"></i> Supprimer
              </button>
          </td>-->
+
      </tr>
-     <tr><td colspan="7"><center><b style="color: red">TOTAL inclus cheques non payés</b></center></td><td style="color: red"><b style="color: red">{{totale}}</td></tr>
+     <tr><td colspan="7"><center><b style="color: red">TOTAL inclus cheques non payés</b></center></td><td style="color: red"><b style="color: red">{{totale}}</b></td></tr>
      <tr><td colspan="7"><center><b style="color: green">TOTAL réel</b></center></td><td><b style="color: green">
      <span ng-if="radios=='all'">{{rtotale}}</span>
-     <span ng-if="radios!='all'">Indisponible</span></b></td></tr>
+     <span ng-if="radios!='all'">Indisponible</span></b></td></tr> 
 </table>
+
+</div>

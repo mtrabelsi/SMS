@@ -1,10 +1,16 @@
 var historyModule = angular.module('module.history', []);
 
 
-historyModule.controller('HistoryController', function(_, $q, $modal, $filter, $scope, levels, NgTableParams, PaymentService, payments) {
+historyModule.controller('HistoryController', function(_, $q, $rootScope, $modal, $filter, $scope, levels, NgTableParams, PaymentService, payments) {
 	$scope.levels = levels;
     $scope.classes = [{_id:'Jasmin'}, {_id:'Violette'}, {_id:'Rose'}, {_id:'Dahlia'}, {_id:'Lilas'}, {_id:'Lys'}, {_id:'Narcisse'}];
     $scope.now =  moment(new Date()).format("YYYY-MM-DD");
+    $rootScope.printOneHistory = false;
+    
+    $scope.printOneHistoryFire = function() {
+     window.print();
+     $rootScope.printOneHistory = false;
+    };
 
     $scope.search = {
         dateDebutPayment: "",
@@ -25,6 +31,8 @@ historyModule.controller('HistoryController', function(_, $q, $modal, $filter, $
 
     var modalShowDetail = $modal({
         scope: $scope,
+        backdrop: 'static',
+        keyboard: false,
         controller: 'HistoryController',
         template: 'frontend/components/history/views/history.detail.html',
         show: false
@@ -32,6 +40,8 @@ historyModule.controller('HistoryController', function(_, $q, $modal, $filter, $
 
 
     $scope.showDetail = function(payment) {
+        $rootScope.printOneHistory = true;
+
         $scope.toShowPayment = payment;
         $scope.chequeAmount = calculateChequesAmount(payment);
 
