@@ -144,6 +144,37 @@ $urlRouterProvider.otherwise('/login');
                                               }
                                        }
 
+                                })   
+                                 .state('manage.daily', {
+                                      url: '/daily',
+                                      templateUrl: 'frontend/components/daily/views/daily.html',
+                                      controller: 'DailyController',
+                                      resolve: {
+                                           payments: function (PaymentService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               PaymentService.getAllPayments().then(function (sts) {
+                                                   defer.resolve(sts);
+                                               },function(error){
+                                                   alert('failed to resolve daily route :  '+error);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
+                                            levels: function (LevelService, $q) {
+                                               var defer = $q.defer();
+                                              
+                                               LevelService.getAllLevels().then(function (lvl) {
+                                                   defer.resolve(lvl);
+                                               });
+                                              
+                                               return defer.promise;
+                                           },
+                                           $title: function() { 
+                                                return 'Journal des paiments'; 
+                                              }
+                                       }
+
                                 })
 
                              .state('manage.cheque', {
@@ -229,7 +260,7 @@ $urlRouterProvider.otherwise('/login');
 
                                 })
 
-                  .state('printOne', {
+                                     .state('printOne', {
                                       url: '/printone/:id',
                                       templateUrl: 'frontend/components/payment/views/payment.one.print.html',
 																			controller: 'HistoryPrinterController',

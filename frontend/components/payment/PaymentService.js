@@ -50,6 +50,8 @@ paymentModule.factory('PaymentService', function(DB_URL, $q) {
 
 
             });
+
+
             return defer.promise;
 
         },

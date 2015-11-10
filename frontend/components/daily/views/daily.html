@@ -2,8 +2,8 @@
 
 <center>
   <div class="onlyPrint">
-  <h3>Historique de paiment de <b>{{search.dateDebutPayment}}</b> à <b>{{search.dateFinPayment}}</b></h3>  
-  <h5>le {{now}}</h5>
+  <h3>Journal de paiment pour {{now}}</h3>  
+  <h5>Généré le {{now}}</h5>
   </div> 
 </center>
 
@@ -12,7 +12,7 @@
   <div class="col-md-4">
       <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
         <label class="control-label pull-left"><i class="fa fa-calendar-o"></i> Date Debut: </label>
-        <input type="text" class="form-control" ng-model="search.dateDebutPayment" data-date-format="yyyy-MM-dd" data-date-type="date" data-autoclose="1" name="date2" cs-date-to-iso bs-datepicker>
+        <input readonly  type="text" class="form-control" ng-model="search.dateDebutPayment" data-date-format="yyyy-MM-dd" data-date-type="date" data-autoclose="1" name="date2" cs-date-to-iso bs-datepicker>
       </div> 
   </div>
 
@@ -20,7 +20,7 @@
   <div class="col-md-4">
     <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
         <label class="control-label pull-left"><i class="fa fa-calendar-o"></i> Date Fin: </label>
-        <input  type="text" class="form-control" ng-model="search.dateFinPayment" data-date-format="yyyy-MM-dd" data-date-type="date" data-autoclose="1" name="date2" cs-date-to-iso bs-datepicker>
+        <input readonly type="text" class="form-control" ng-model="search.dateFinPayment" data-date-format="yyyy-MM-dd" data-date-type="date" data-autoclose="1" name="date2" cs-date-to-iso bs-datepicker>
       </div>
   </div>
 

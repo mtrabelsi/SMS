@@ -1,7 +1,19 @@
 <br/>
+<center>
+  <div class="onlyPrint">
+  <h3>Les eleves Impayés - 
+
+  <span ng-if="checkedTrimester=='t1'">Trimestre 1</span>
+  <span ng-if="checkedTrimester=='t2'">Trimestre 2</span>
+  <span ng-if="checkedTrimester=='t3'">Trimestre 3</span>
+
+  </h3>  
+
+  </div> 
+</center>
 
 
-<div class="row">
+<div class="row hidee">
 
   <div class="col-md-6">
       <div class="btn-group" ng-model="checkedTrimester" bs-radio-group>

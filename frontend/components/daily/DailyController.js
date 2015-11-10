@@ -1,7 +1,7 @@
-var historyModule = angular.module('module.history', []);
+var dailyModule = angular.module('module.daily', []);
 
 
-historyModule.controller('HistoryController', function(_, $q, $rootScope, $modal, $filter, $scope, levels, NgTableParams, PaymentService, payments) {
+dailyModule.controller('DailyController', function(_, $q, $rootScope, $modal, $filter, $scope, levels, NgTableParams, PaymentService, payments) {
 	$scope.levels = levels;
     $scope.classes = [{_id:'Jasmin'}, {_id:'Violette'}, {_id:'Rose'}, {_id:'Dahlia'}, {_id:'Lilas'}, {_id:'Lys'}, {_id:'Narcisse'}];
     $scope.now =  moment(new Date()).format("YYYY-MM-DD");
@@ -13,8 +13,8 @@ historyModule.controller('HistoryController', function(_, $q, $rootScope, $modal
     };
 
     $scope.search = {
-        dateDebutPayment: "",
-        dateFinPayment : ""
+        dateDebutPayment: $scope.now,
+        dateFinPayment : $scope.now
     }
 
     $scope.payments = payments;
@@ -33,8 +33,8 @@ historyModule.controller('HistoryController', function(_, $q, $rootScope, $modal
         scope: $scope,
         backdrop: 'static',
         keyboard: false,
-        controller: 'HistoryController',
-        template: 'frontend/components/history/views/history.detail.html',
+        controller: 'DailyController',
+        template: 'frontend/components/daily/views/daily.detail.html',
         show: false
     });
 
@@ -100,14 +100,9 @@ historyModule.controller('HistoryController', function(_, $q, $rootScope, $modal
     });
 
     function getData(params) {
-       
+
        var   filtredData    = $filter('filter')($scope.payments, params.filter());
-
-        if(params.orderBy()[0]=="+name")
-             filtredData    = $filter('orderBy')(filtredData, ["+datePayment"]);
-         else
              filtredData    = $filter('orderBy')(filtredData, params.orderBy());
-
        var filtredData2 = [];         
         if((typeof $scope.search.dateDebutPayment!= "undefined")&&$scope.search.dateDebutPayment && (typeof $scope.search.dateFinPayment!="undefined")&&$scope.search.dateFinPayment){
             
@@ -135,24 +130,24 @@ historyModule.controller('HistoryController', function(_, $q, $rootScope, $modal
 });
 
 
-historyModule.controller('HistoryPrinterController', function( $scope, NgTableParams, PaymentService, payment, levels) {
+// dailyModule.controller('HistoryPrinterController', function( $scope, NgTableParams, PaymentService, payment, levels) {
 
-    $scope.payment = payment;
-    $scope.tableChequeParams = new NgTableParams({
-        sorting: { name: "asc" } 
-    }, {
-        dataset: $scope.payment.amount.cheques
-    });
+//     $scope.payment = payment;
+//     $scope.tableChequeParams = new NgTableParams({
+//         sorting: { name: "asc" } 
+//     }, {
+//         dataset: $scope.payment.amount.cheques
+//     });
 
-     function calculateChequesAmount(){
-        var chequeAmount = 0;
+//      function calculateChequesAmount(){
+//         var chequeAmount = 0;
 
-        $scope.payment.amount.cheques.forEach(function(cheque) {
-            chequeAmount = chequeAmount + cheque.amount;
-        });
-        return chequeAmount;
-    }
+//         $scope.payment.amount.cheques.forEach(function(cheque) {
+//             chequeAmount = chequeAmount + cheque.amount;
+//         });
+//         return chequeAmount;
+//     }
 
-    $scope.chequeAmount = calculateChequesAmount();
+//     $scope.chequeAmount = calculateChequesAmount();
 
-});
+// });
