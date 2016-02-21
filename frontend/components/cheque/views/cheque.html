@@ -5,6 +5,17 @@
   </div> 
 </center>
 
+<div class="row hidee">
+  <div class="col-md-4">
+      <div class="form-group" ng-class="{'has-error': datepickerForm.date2.$invalid}">
+        <label class="control-label pull-left"><i class="fa fa-calendar-o"></i> Date Echéance: </label>
+        <input type="text" class="form-control" ng-model="search.dateEcheance" data-date-format="yyyy-MM-dd" data-date-type="date" data-autoclose="1" name="date2" cs-date-to-iso bs-datepicker>
+      </div> 
+  </div>
+</div>
+
+
+
 <table ng-table="tableParams"  class="table table-bordered table-hover printable">
 
  <!-- Object {number: 6565, amount: 40, bank: "jjjj", dateE: "2015-10-25"}-->
