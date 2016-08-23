@@ -95,8 +95,13 @@ levelModule.factory('LevelService', function(DB_URL, $q) {
                 autoload: true
             });
 
+            if (typeof level.price == "undefined" || Object.keys(level.price).length != 3 || Object.keys(level.price.t1).length != 5
+                || Object.keys(level.price.t2).length != 5 || Object.keys(level.price.t3).length != 5) {
+                defer.reject("Vous avez des champs vides?");
+                return defer.promise;
+            }
             if (typeof level === "undefined") {
-                defer.reject("Are trying to insert/update an empty level?");
+                defer.reject("Vous avez des champs vides?");
             } else {
                 db.levels.update({
                     _id: level._id
