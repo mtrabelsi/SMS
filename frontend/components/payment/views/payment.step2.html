@@ -5,19 +5,19 @@
                 <h4 class="modal-title">
               
                     <span ng-class="{'bg-muted': entredAmount()=== 0,
-                             'bg-warning': entredAmount() < amount && entredAmount() != 0,
-                             'bg-success': entredAmount() === amount,
-                             'bg-danger': entredAmount() > amount}">    
-                             <b> Votre Caisse :</b></span>
+                             'bg-warning': entredAmount() < amountWithTax && entredAmount() != 0,
+                             'bg-success': entredAmount() === amountWithTax,
+                             'bg-danger': entredAmount() > amountWithTax}">    
+                             <b> Votre Caisse (TTC) :</b></span>
 
                     <span ng-class="{'text-muted': entredAmount()=== 0,
-                             'text-warning': entredAmount() < amount && entredAmount() != 0,
-                             'text-success': entredAmount() === amount,
-                             'text-danger': entredAmount() > amount}">    
-                             {{entredAmount()}} 
+                             'text-warning': entredAmount() < amountWithTax && entredAmount() != 0,
+                             'text-success': entredAmount() === amountWithTax,
+                             'text-danger': entredAmount() > amountWithTax}">    
+                             {{entredAmount()}}
                     </span>
 
-                  <span class="pull-right space-40">Total à payer : <b>{{amount}} DT</b></span></h4>
+                  <span class="pull-right space-40">Total à payer DT : {{amount}} HT / <b>{{amountWithTax}} TTC </b></span></h4>
             </div>
 
             <div class="modal-body">
@@ -91,7 +91,7 @@
                     
                 
 
-            <button ng-disabled="entredAmount()!=amount||amount==0" type="button" class="btn btn-primary" ng-click="$parent.finalPayment(toPayStudent);$hide();">
+            <button ng-disabled="entredAmount()!=amountWithTax||amountWithTax==0" type="button" class="btn btn-primary" ng-click="$parent.finalPayment(toPayStudent);$hide();">
                             <i class="fa fa fa-paypal"></i> Payer
                         </button>
 

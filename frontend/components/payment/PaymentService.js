@@ -3,7 +3,12 @@ paymentModule.factory('PaymentService', function(DB_URL, $q) {
 
 
     return {
-
+        tax : function(){
+              var fs = require('fs');
+              var path = require('path');
+              var sTax = fs.readFileSync(path.join(DB_URL, '/taxe.db'));
+              return sTax;
+        },
 
         getPaymentById: function(id) {
             var defer = $q.defer();

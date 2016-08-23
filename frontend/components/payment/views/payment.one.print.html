@@ -114,8 +114,9 @@
 
 
 <tr><td colspan="2">
-    <span ng-if="payment.amount.brutAmount!=0"><b>Espece payé</b> : {{payment.amount.brutAmount}} DT </span><br/>
+    <span ng-if="payment.amount.brutAmount!=0"><b>Espece payé (TTC)</b> : {{payment.amount.brutAmount}} DT </span>  <br/>
+    <span><b>Taxe : </b>  12%</span>  <br/>
     <span ng-if="payment.amount.cheques.length>0"><b> Cheque(s) payé(s) :</b> {{chequeAmount}} DT </span>
-    <span class="pull-right space-40"><b>Total payé</b> : {{chequeAmount+payment.amount.brutAmount}} DT</span>
+    <span class="pull-right space-40"><b>Total payé (TTC)</b> : {{chequeAmount+payment.amount.brutAmount}} DT</span>
 </td></tr>
 </table>

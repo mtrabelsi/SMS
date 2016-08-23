@@ -6,7 +6,7 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
   
   window.sc = $scope;
     $scope.students = students;
-
+    $scope.paymentService = PaymentService;
     $scope.tableParams = new NgTableParams({}, {
         dataset: $scope.students
     });
@@ -75,11 +75,17 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
 
     $scope.paymentStep2 = function(student) {
         $scope.amount = $rootScope.calculateAmount($scope.newlyClickedProducts, student.price);
+        $scope.amountWithTax = $scope.amount + 12* $scope.amount /100;
         modalPayment2.$promise.then(modalPayment2.show);
     }
 
     function calculateEntredAmount() {
         return  calculateChequesAmount() + $scope.payment.amount.brutAmount;
+    }
+
+    function calculateEntredAmountWithTaxe() {
+        var ht = calculateChequesAmount() + $scope.payment.amount.brutAmount;
+        return ht + (ht/100) * 12;
     }
 
     function calculateChequesAmount() {
@@ -97,6 +103,7 @@ paymentModule.controller('PaymentController', function(_, PaymentService, $state
     $scope.chequeAmount = calculateChequesAmount;
     //cheques + brut amount
     $scope.entredAmount = calculateEntredAmount;
+    $scope.entredAmountWithTaxe = calculateEntredAmountWithTaxe;
 
     $scope.tableChequeParams = new NgTableParams({}, {
         counts: [], //no pagination
