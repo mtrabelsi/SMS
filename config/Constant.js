@@ -1,3 +1,8 @@
 var cst = angular.module('Const',[]);
 
-cst.constant('DB_URL', './config/mydb');
+var path = require("path");
+
+var current = process.execPath;
+var dbUrl = path.join(current, '..','mydb');
+
+cst.constant('DB_URL', dbUrl);
